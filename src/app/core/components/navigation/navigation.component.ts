@@ -8,6 +8,7 @@ import { RouterLink } from '@angular/router';
 })
 export class NavigationComponent implements OnInit {
 
+  
   constructor() { }
 
   ngOnInit() {
