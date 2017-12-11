@@ -1,9 +1,7 @@
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from '@app/app.component';
@@ -20,8 +18,7 @@ import { CoreModule } from '@app/core';
     BrowserAnimationsModule,
     AppRoutingModule,
     CoreModule,
-    FlexLayoutModule,
-    NgxDatatableModule,
+    NgbModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

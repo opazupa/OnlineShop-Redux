@@ -1,4 +1,3 @@
-import { MaterialModule } from '../shared/material/material.module';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -7,6 +6,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { HeaderComponent } from './components/header/header.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     CommonModule,
     HttpClientModule,
     RouterModule,
-    MaterialModule
+    FormsModule,
+    NgbModule
   ],
   exports: [FooterComponent, NavigationComponent, HeaderComponent],
   declarations: [FooterComponent, NavigationComponent, HeaderComponent, DashboardComponent],
