@@ -5,6 +5,7 @@ import { AdminProductsComponent } from './components/admin-products/admin-produc
 import { AdminOrdersComponent } from './components/admin-orders/admin-orders.component';
 
 export const routes: Routes = [
+  { path: '', redirectTo: 'products', pathMatch: 'full'},
   { path: 'products',  component: AdminProductsComponent },
   { path: 'orders', component: AdminOrdersComponent}
 ];

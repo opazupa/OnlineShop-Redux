@@ -8,10 +8,19 @@ import { RouterLink } from '@angular/router';
 })
 export class NavigationComponent implements OnInit {
 
-  
+  showCollapsedMenu: Boolean = false;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  close() {
+    this.showCollapsedMenu = false;
+  }
+
+  toggleCollapse() {
+    this.showCollapsedMenu = !this.showCollapsedMenu;
   }
 
 }
