@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from '@app/core/components/dashboard/dashboard.component';
+import { HomeComponent } from './core/components/home/home.component';
+import { LoginComponent } from './core/components/login/login.component';
 
 const routes: Routes = [
-  {path: '', component: DashboardComponent},
-  // {path: '', loadChildren: './features/..#module'},
-  // {path: '', loadChildren: './features/..#module'}
+  {path: '', component: HomeComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'shop', loadChildren: './features/shopping/shopping.module#ShoppingModule'},
+  {path: 'admin', loadChildren: './admin/admin.module#AdminModule'}
 ];
 
 
