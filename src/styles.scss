@@ -5,16 +5,23 @@ $fa-font-path: "../node_modules/font-awesome/fonts";
 
 @import url("https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900");
 
-$primary-color: #f5d441;
-$primary-color-hover: #ebc10a;
+$primary-color: orange;
+$primary-color-hover: #f58d06;
 $primary-font-family: 'Raleway';
 
 * {
   font-family: $primary-font-family;
 }
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 body { 
-  padding-top: 80px; 
+  padding-top: 80px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
 }
 
 h1, h2, h3 { 
@@ -56,6 +63,14 @@ h1, h2, h3 {
 .form-control:focus {
   border-color: $primary-color;
 }
+
 .active-route {
   color: purple!important;
+}
+
+.footer {
+  text-align: center;
+  .footer-icon {
+    color: red;
+  }
 }
