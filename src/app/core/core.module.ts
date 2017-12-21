@@ -6,6 +6,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '@app/shared';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 
@@ -13,7 +14,8 @@ import { LoginComponent } from './components/login/login.component';
 @NgModule({
   imports: [
     RouterModule,
-    SharedModule
+    SharedModule,
+    NgxDatatableModule
   ],
   exports: [NavigationComponent, FooterComponent],
   declarations: [FooterComponent, NavigationComponent, HomeComponent, LoginComponent],

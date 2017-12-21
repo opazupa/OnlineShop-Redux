@@ -6,14 +6,15 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
 import { CheckOutComponent } from './components/check-out/check-out.component';
 import { OrderSuccessComponent } from './components/order-success/order-success.component';
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
+import { AuthGuard } from '../../shared/services';
 
 export const routes: Routes = [
-  {path: '', redirectTo: 'products'},
-  { path: 'my-orders',  component: MyOrdersComponent },
+  { path: '', redirectTo: 'products' },
   { path: 'products',  component: ProductsComponent },
-  { path: 'shopping-cart', component: ShoppingCartComponent},
-  { path: 'check-out', component: CheckOutComponent},
-  { path: 'order-success', component: OrderSuccessComponent}
+  { path: 'shopping-cart', component: ShoppingCartComponent} ,
+  { path: 'my-orders',  component: MyOrdersComponent, canActivate: [AuthGuard] },
+  { path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard] },
+  { path: 'order-success', component: OrderSuccessComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
