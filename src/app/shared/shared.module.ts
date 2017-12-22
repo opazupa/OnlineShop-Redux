@@ -1,12 +1,16 @@
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CustomFormsModule } from 'ng2-validation'
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth-guard.service';
 import { UserService } from './services/user.service';
+import { CategoryService } from './services/category.service';
+import { ProductService } from './services/product.service';
+import { ErrorBoxComponent } from './components/error-box/error-box.component';
 
 @NgModule({
   imports: [
@@ -15,15 +19,19 @@ import { UserService } from './services/user.service';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     NgbModule.forRoot(),
+    CustomFormsModule
   ],
   exports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    NgbModule.forRoot().ngModule
+    NgbModule.forRoot().ngModule,
+    CustomFormsModule,
+    ErrorBoxComponent
   ],
-  declarations: [],
-  providers: [AuthService, AuthGuard, UserService]
+  declarations: [ErrorBoxComponent],
+  providers: [AuthService, AuthGuard, UserService, CategoryService, ProductService]
 })
 export class SharedModule { }

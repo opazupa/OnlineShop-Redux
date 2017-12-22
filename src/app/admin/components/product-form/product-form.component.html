@@ -1,0 +1,65 @@
+<div class="row">
+  <div class="col-md-6">
+    <form [formGroup]="productForm" (ngSubmit)="save()">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" formControlName="title" >
+        <lw-error-box *ngIf="validateFormControl('title')">
+          Title required.
+        </lw-error-box>
+      </div>
+      <div class="form-group">
+        <label for="price">Price</label>
+        <div class="input-group">
+            
+            <input type="text" class="form-control" id="price" formControlName="price" number>
+            <span class="input-group-addon">€</span>
+          </div>
+          <lw-error-box *ngIf="validateFormControl('price')">
+            <div *ngIf="productForm.get('price').hasError('required')">
+              Price required.
+            </div>
+            <div *ngIf="productForm.get('price').hasError('min') || productForm.get('price').hasError('number')">
+              Price must be a number greater than 0 €.
+            </div>
+          </lw-error-box>
+      </div>
+      <div class="form-group">
+        <label for="category">Category</label>
+        <select class="form-control" id="category" formControlName="category" >
+          <option></option>
+          <option *ngFor="let category of categories$ | async" [value]="category.key">
+            {{category.payload.val().name}}
+          </option>
+        </select>
+        <lw-error-box *ngIf="validateFormControl('category')">
+          Category required.
+        </lw-error-box>
+      </div>
+      <div class="form-group">
+        <label for="imageUrl">Image URL</label>
+        <input type="URL" class="form-control" id="imageUrl" formControlName="imageUrl" url>
+        <lw-error-box *ngIf="validateFormControl('imageUrl')">
+          <div *ngIf="productForm.get('imageUrl').hasError('required')">
+            Image URL required.
+          </div>
+          <div *ngIf="productForm.get('imageUrl').hasError('url')">
+            Invalid URL pattern
+          </div>
+        </lw-error-box>
+      </div>
+      <div>
+        <button class="btn btn-primary" [disabled]="productForm.invalid" type="submit">Save</button>
+      </div>
+    </form>
+  </div>
+  <div class="col-md-6">
+    <div class="card" style="width: 20rem;">
+        <img class="card-img-top" [src]="getFormControlValue('imageUrl')">
+        <div class="card-body">
+          <h4 class="card-title">{{getFormControlValue('title')}}</h4>
+          <p class="card-text">{{getFormControlValue('price') | currency:'EUR':symbol}}</p>
+        </div>
+      </div>
+  </div>
+</div>

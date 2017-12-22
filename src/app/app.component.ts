@@ -13,10 +13,15 @@ export class AppComponent {
     auth.user$.subscribe(user => {
       if (user) {
         this.userService.save(user);
-        let returnUrl = localStorage.getItem('returnUrl');
+        const returnUrl = localStorage.getItem('returnUrl');
+
         // Redirect home by default
-        returnUrl = returnUrl !== 'null' ? returnUrl : '/';
-        router.navigateByUrl(returnUrl);
+        if (returnUrl !== 'null') {
+          localStorage.removeItem('returnUrl');
+          router.navigateByUrl(returnUrl);
+          return;
+        }
+        router.navigate(['/']);
       }
     });
   }
