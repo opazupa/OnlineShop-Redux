@@ -1,3 +1,4 @@
+import { CustomValidators } from 'ng2-validation';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CategoryService, ProductService } from '@app/shared/services';
@@ -20,14 +21,14 @@ export class ProductFormComponent implements OnInit {
     private productService: ProductService,
     private router: Router) {
     this.categories$ = categoryService.getCategories();
-   }
+  }
 
   ngOnInit() {
       this.productForm = this.fb.group({
       title: ['', Validators.compose([Validators.required])],
-      price: ['', Validators.compose([Validators.required, Validators.min(0)])],
-      category: ['', Validators.required ],
-      imageUrl: ['', Validators.required]
+      price: ['', Validators.compose([Validators.required, Validators.min(0), CustomValidators.number])],
+      category: ['', Validators.required],
+      imageUrl: ['', Validators.compose([Validators.required, CustomValidators.url])]
     });
   }
 
@@ -37,13 +38,15 @@ export class ProductFormComponent implements OnInit {
     this.router.navigate(['/admin/products']);
 
   }
+
+  isFormUntouched(): boolean {
+    return this.productForm.pristine;
+  }
+
   getFormControlValue(controlName: string) {
     const control = this.productForm.get(controlName);
-    let value = '';
-    if (control) {
-      value = control.value;
-    }
-    return value;
+
+    return control.value || '';
   }
 
 

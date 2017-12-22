@@ -12,7 +12,7 @@
         <label for="price">Price</label>
         <div class="input-group">
             
-            <input type="text" class="form-control" id="price" formControlName="price" number>
+            <input type="text" class="form-control" id="price" formControlName="price">
             <span class="input-group-addon">€</span>
           </div>
           <lw-error-box *ngIf="validateFormControl('price')">
@@ -38,7 +38,7 @@
       </div>
       <div class="form-group">
         <label for="imageUrl">Image URL</label>
-        <input type="URL" class="form-control" id="imageUrl" formControlName="imageUrl" url>
+        <input type="URL" class="form-control" id="imageUrl" formControlName="imageUrl">
         <lw-error-box *ngIf="validateFormControl('imageUrl')">
           <div *ngIf="productForm.get('imageUrl').hasError('required')">
             Image URL required.
@@ -57,8 +57,10 @@
     <div class="card" style="width: 20rem;">
         <img class="card-img-top" [src]="getFormControlValue('imageUrl')">
         <div class="card-body">
-          <h4 class="card-title">{{getFormControlValue('title')}}</h4>
-          <p class="card-text">{{getFormControlValue('price') | currency:'EUR':symbol}}</p>
+            <p *ngIf="isFormUntouched()">Preview your product here :)</p>
+          <h4 class="card-title">{{ getFormControlValue('title') }}</h4>
+          <p class="card-text">{{ getFormControlValue('price') | currency:'EUR':'symbol':'0.2-2':'fi' }}</p>
+          <p class="card-text">{{ getFormControlValue('category') | titlecase }}</p>
         </div>
       </div>
   </div>

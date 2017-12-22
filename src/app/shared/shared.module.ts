@@ -4,7 +4,6 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CustomFormsModule } from 'ng2-validation'
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth-guard.service';
 import { UserService } from './services/user.service';
@@ -19,7 +18,6 @@ import { ErrorBoxComponent } from './components/error-box/error-box.component';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     NgbModule.forRoot(),
-    CustomFormsModule
   ],
   exports: [
     CommonModule,
@@ -28,7 +26,6 @@ import { ErrorBoxComponent } from './components/error-box/error-box.component';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     NgbModule.forRoot().ngModule,
-    CustomFormsModule,
     ErrorBoxComponent
   ],
   declarations: [ErrorBoxComponent],

@@ -15,13 +15,10 @@ export class AppComponent {
         this.userService.save(user);
         const returnUrl = localStorage.getItem('returnUrl');
 
-        // Redirect home by default
         if (returnUrl !== 'null') {
           localStorage.removeItem('returnUrl');
           router.navigateByUrl(returnUrl);
-          return;
         }
-        router.navigate(['/']);
       }
     });
   }

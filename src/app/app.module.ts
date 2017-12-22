@@ -6,6 +6,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { registerLocaleData } from '@angular/common';
+import localeFi from '@angular/common/locales/fi';
 
 import { AppComponent } from '@app/app.component';
 import { AppRoutingModule } from '@app/app-routing.module';
@@ -13,6 +15,7 @@ import { CoreModule } from '@app/core';
 import { environment } from '@env/environment';
 import { SharedModule } from '@app/shared';
 
+registerLocaleData(localeFi, 'fi');
 
 @NgModule({
   declarations: [
