@@ -9,6 +9,7 @@ import { SharedModule } from '@app/shared';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
+import { AnimatedToggleComponent } from './components/animated-toggle/animated-toggle.component';
 
 
 @NgModule({
@@ -18,7 +19,7 @@ import { LoginComponent } from './components/login/login.component';
     NgxDatatableModule
   ],
   exports: [NavigationComponent, FooterComponent],
-  declarations: [FooterComponent, NavigationComponent, HomeComponent, LoginComponent],
+  declarations: [FooterComponent, NavigationComponent, HomeComponent, LoginComponent, AnimatedToggleComponent],
   providers: []
 })
 export class CoreModule { }
