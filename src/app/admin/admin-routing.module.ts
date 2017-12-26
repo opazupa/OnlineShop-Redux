@@ -9,8 +9,9 @@ import { ProductFormComponent } from './components/product-form/product-form.com
 
 export const routes: Routes = [
   { path: '', redirectTo: 'products', pathMatch: 'full' , canActivate: [AuthGuard, AdminAuthGuard] },
-  { path: 'products',  component: AdminProductsComponent, canActivate: [AuthGuard, AdminAuthGuard] },
   { path: 'products/new',  component: ProductFormComponent, canActivate: [AuthGuard, AdminAuthGuard] },
+  { path: 'products/:id',  component: ProductFormComponent, canActivate: [AuthGuard, AdminAuthGuard] },
+  { path: 'products',  component: AdminProductsComponent, canActivate: [AuthGuard, AdminAuthGuard] },
   { path: 'orders', component: AdminOrdersComponent, canActivate: [AuthGuard, AdminAuthGuard]}
 ];
 

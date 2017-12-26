@@ -10,6 +10,7 @@ import { UserService } from './services/user.service';
 import { CategoryService } from './services/category.service';
 import { ProductService } from './services/product.service';
 import { ErrorBoxComponent } from './components/error-box/error-box.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   imports: [
@@ -26,9 +27,10 @@ import { ErrorBoxComponent } from './components/error-box/error-box.component';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     NgbModule.forRoot().ngModule,
-    ErrorBoxComponent
+    ErrorBoxComponent,
+    SpinnerComponent
   ],
-  declarations: [ErrorBoxComponent],
+  declarations: [ErrorBoxComponent, SpinnerComponent],
   providers: [AuthService, AuthGuard, UserService, CategoryService, ProductService]
 })
 export class SharedModule { }

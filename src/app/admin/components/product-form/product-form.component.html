@@ -3,7 +3,7 @@
     <form [formGroup]="productForm" (ngSubmit)="save()">
       <div class="form-group">
         <label for="title">Title</label>
-        <input type="text" class="form-control" id="title" formControlName="title" >
+        <input type="text" [(ngModel)]="product.title" class="form-control" id="title" formControlName="title" >
         <lw-error-box *ngIf="validateFormControl('title')">
           Title required.
         </lw-error-box>
@@ -11,8 +11,7 @@
       <div class="form-group">
         <label for="price">Price</label>
         <div class="input-group">
-            
-            <input type="text" class="form-control" id="price" formControlName="price">
+            <input type="text" [(ngModel)]="product.price" class="form-control" id="price" formControlName="price">
             <span class="input-group-addon">€</span>
           </div>
           <lw-error-box *ngIf="validateFormControl('price')">
@@ -26,10 +25,10 @@
       </div>
       <div class="form-group">
         <label for="category">Category</label>
-        <select class="form-control" id="category" formControlName="category" >
+        <select [(ngModel)]="product.category" class="form-control" id="category" formControlName="category" >
           <option></option>
           <option *ngFor="let category of categories$ | async" [value]="category.key">
-            {{category.payload.val().name}}
+            {{category.name}}
           </option>
         </select>
         <lw-error-box *ngIf="validateFormControl('category')">
@@ -38,7 +37,7 @@
       </div>
       <div class="form-group">
         <label for="imageUrl">Image URL</label>
-        <input type="URL" class="form-control" id="imageUrl" formControlName="imageUrl">
+        <input type="URL" [(ngModel)]="product.imageUrl" class="form-control" id="imageUrl" formControlName="imageUrl">
         <lw-error-box *ngIf="validateFormControl('imageUrl')">
           <div *ngIf="productForm.get('imageUrl').hasError('required')">
             Image URL required.
@@ -50,17 +49,18 @@
       </div>
       <div>
         <button class="btn btn-primary" [disabled]="productForm.invalid" type="submit">Save</button>
+        <button type="button" class="btn btn-danger" (click)="deleteProduct()">Delete</button>
       </div>
     </form>
   </div>
   <div class="col-md-6">
-    <div class="card" style="width: 20rem;">
-        <img class="card-img-top" [src]="getFormControlValue('imageUrl')">
+    <p *ngIf="isFormEmpty()">Preview your product here :)</p>
+    <div *ngIf="!isFormEmpty()" class="card">
+        <img class="card-img-top" [src]="product?.imageUrl" *ngIf="product.imageUrl">
         <div class="card-body">
-            <p *ngIf="isFormUntouched()">Preview your product here :)</p>
-          <h4 class="card-title">{{ getFormControlValue('title') }}</h4>
-          <p class="card-text">{{ getFormControlValue('price') | currency:'EUR':'symbol':'0.2-2':'fi' }}</p>
-          <p class="card-text">{{ getFormControlValue('category') | titlecase }}</p>
+          <h4 class="card-title">{{ product.title }}</h4>
+          <p class="card-text">{{ product.price | currency:'EUR':'symbol':'0.2-2':'fi' }}</p>
+          <p class="card-text">{{ product.category | titlecase }}</p>
         </div>
       </div>
   </div>

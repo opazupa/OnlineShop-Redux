@@ -1,2 +1,52 @@
-
-<a routerLink="/admin/products/new" class="btn btn-primary"><i class="fa fa-plus"></i> New Product</a>
+<div class="row">
+  <p>
+    <a routerLink="/admin/products/new" class="btn btn-primary"><i class="fa fa-plus"></i> New Product</a>
+  </p>
+  <p>
+    <input
+    class="form-control"
+    #query
+    type='text'
+    placeholder='Search...'
+    (keyup)='filter(query.value)'
+  />
+  </p>
+</div>
+<div *ngIf="(filteredProducts), let products;else spinner">
+  <ngx-datatable
+    class="bootstrap"
+    [rows]="products"
+    [columnMode]="'force'"
+    [headerHeight]="40"
+    [footerHeight]="40"
+    [limit]="15"
+    [rowHeight]="'auto'"
+    [reorderable]="true">
+    <ngx-datatable-column name="Title" prop="title" [flexGrow]="1">
+      <ng-template let-value="value" ngx-datatable-cell-template>
+        {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Price" prop="price" [flexGrow]="1">
+      <ng-template let-value="value" ngx-datatable-cell-template>
+        {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column sortable="false" maxWidth="150">
+      <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+          {{column.name}}
+      </ng-template>
+      <ng-template let-row="row" ngx-datatable-cell-template>
+          <button class="btn btn-link" (click)="editProduct(row)">
+             Edit
+          </button>
+          <button class="btn btn-danger" (click)="deleteProduct(row)">
+              Delete
+          </button>
+      </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
+  </div>
+  <ng-template #spinner>
+    <lw-spinner></lw-spinner>
+  </ng-template>

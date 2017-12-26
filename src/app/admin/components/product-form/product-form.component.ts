@@ -4,7 +4,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CategoryService, ProductService } from '@app/shared/services';
 import { Observable } from 'rxjs/Observable';
 import { Product } from '@app/shared/models';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import 'rxjs/add/operator/take';
 
 @Component({
   selector: 'lw-product-form',
@@ -14,13 +15,22 @@ import { Router } from '@angular/router';
 export class ProductFormComponent implements OnInit {
 
   categories$: Observable<any>;
+  product: Product = {};
   productForm: FormGroup;
+  id: string;
+
   constructor(
     private fb: FormBuilder,
     private categoryService: CategoryService,
     private productService: ProductService,
+    private route: ActivatedRoute,
     private router: Router) {
+
     this.categories$ = categoryService.getCategories();
+    this.id = this.route.snapshot.paramMap.get('id');
+    if (this.id) {
+      this.productService.getProduct(this.id).take(1).subscribe(p => this.product = p);
+    }
   }
 
   ngOnInit() {
@@ -34,9 +44,22 @@ export class ProductFormComponent implements OnInit {
 
   save(): void {
     const product = this.productForm.value as Product;
-    this.productService.create(product);
-    this.router.navigate(['/admin/products']);
+    // this.product
 
+    if (this.id) {
+      this.productService.updateProduct(this.id, product);
+    } else {
+      this.productService.create(product);
+    }
+
+  }
+
+  deleteProduct(): void {
+    // TODO! BS form-->
+    if( confirm('U sure!')){
+      this.productService.deleteProduct(this.id);
+      this.router.navigate(['/admin/products']);
+    }
   }
 
   isFormUntouched(): boolean {
@@ -55,4 +78,14 @@ export class ProductFormComponent implements OnInit {
     return control.invalid && control.touched;
   }
 
+  isFormEmpty(): Boolean {
+    let result = true;
+    Object.keys(this.productForm.controls).forEach(key => {
+      console.log(this.productForm.get(key));
+      if (this.productForm.get(key).value !== undefined && !this.productForm.get(key).errors ) {
+        result = false;
+      }
+    });
+    return result;
+  }
 }
