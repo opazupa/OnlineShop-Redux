@@ -24,7 +24,7 @@ html {
 body { 
   padding-top: 80px;
     /* Margin bottom by footer height */
-    margin-bottom: 60px;
+  margin-bottom: 60px;
 }
 
 h1, h2, h3 { 
@@ -60,16 +60,16 @@ h1, h2, h3 {
 
 .outlet{
   padding-bottom: 30px;
+  text-align: center;
 }
 
 .btn-primary {
   background-color: $primary-color;
   border-color: $primary-color;
+  &:hover, &:active {
+  background-color: $primary-color-hover!important;
+  border-color: $primary-color-hover!important;
 }
-
-.btn-primary:hover {
-  background-color: $primary-color-hover;
-  border-color: $primary-color-hover;
 }
 
 .btn-primary.disabled, .btn-primary:disabled {

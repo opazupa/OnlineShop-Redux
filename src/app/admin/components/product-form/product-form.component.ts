@@ -42,7 +42,7 @@ export class ProductFormComponent implements OnInit {
     });
   }
 
-  save(): void {
+  saveProduct(): void {
     const product = this.productForm.value as Product;
     // this.product
 
@@ -51,7 +51,7 @@ export class ProductFormComponent implements OnInit {
     } else {
       this.productService.create(product);
     }
-
+    this.router.navigate(['/admin/products']);
   }
 
   deleteProduct(): void {
@@ -81,7 +81,6 @@ export class ProductFormComponent implements OnInit {
   isFormEmpty(): Boolean {
     let result = true;
     Object.keys(this.productForm.controls).forEach(key => {
-      console.log(this.productForm.get(key));
       if (this.productForm.get(key).value !== undefined && !this.productForm.get(key).errors ) {
         result = false;
       }
