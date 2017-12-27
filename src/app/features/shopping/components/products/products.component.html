@@ -1,3 +1,18 @@
-<p>
-  products works!
-</p>
+<div class="row">
+  <div class="col-lg-3 col-md-6">
+    <lw-product-filter [category]="category"></lw-product-filter>
+  </div>
+  <div class="col-lg-9 col-xs-10">
+    <div class="row">
+        <ng-container *ngFor="let product of filteredProducts; let i = index">
+          <div class="col-xs-6 col-md-6 col-lg-4">
+            <lw-product-card [product]="product" [show-category]="false"></lw-product-card>
+          </div>
+          <!-- <div *ngIf="(i + 1) % 2 === 0" class="w-100"></div> -->
+        </ng-container>
+      </div>
+  </div>
+</div>
+
+
+

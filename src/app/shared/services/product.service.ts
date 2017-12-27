@@ -25,7 +25,7 @@ export class ProductService {
     return this.db.object('/products/' + productId).valueChanges().map(p => p as Product);
   }
 
-   updateProduct(productId: string, product: Product): Observable<Product> {
+  updateProduct(productId: string, product: Product): Observable<Product> {
     this.db.object('/products/' + productId).update(product);
     return this.getProduct(productId);
   }

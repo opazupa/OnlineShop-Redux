@@ -11,6 +11,7 @@ import { CategoryService } from './services/category.service';
 import { ProductService } from './services/product.service';
 import { ErrorBoxComponent } from './components/error-box/error-box.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { ProductCardComponent } from './components/product-card/product-card.component';
 
 @NgModule({
   imports: [
@@ -28,9 +29,10 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     AngularFireAuthModule,
     NgbModule.forRoot().ngModule,
     ErrorBoxComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    ProductCardComponent
   ],
-  declarations: [ErrorBoxComponent, SpinnerComponent],
+  declarations: [ErrorBoxComponent, SpinnerComponent, ProductCardComponent],
   providers: [AuthService, AuthGuard, UserService, CategoryService, ProductService]
 })
 export class SharedModule { }

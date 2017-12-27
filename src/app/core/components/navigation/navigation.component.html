@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light bg-faded fixed-top">
   <a class="navbar-brand" routerLink="/">
-    <i class="fa fa-umbrella fa-2x" aria-hidden="true"></i> Olli's shop
+    <i class="fa fa-paw fa-2x" aria-hidden="true"></i> Olli's shop
   </a>
   <lw-animated-toggle class="navbar-toggler navbar-toggler-right" [toggle]="showCollapsedMenu" (click)="toggleCollapse()"></lw-animated-toggle>
   <div class="collapse navbar-collapse" id="navbarCollapse" [ngbCollapse]="!showCollapsedMenu">
@@ -9,6 +9,10 @@
         <a class="nav-link" routerLink='/shop/shopping-cart' routerLinkActive="active-route">
           <i class="fa fa-shopping-cart" aria-hidden="true"></i> Shopping Cart</a>
       </li>
+      <li class="nav-item" (click)="close()">
+          <a class="nav-link" routerLink='shop/products' routerLinkActive="active-route">
+            <i class="fa fa-paw" aria-hidden="true"></i> Products</a>
+        </li>
       <ng-template #anonymousUser>
         <li class="nav-item" (click)="close()">
           <a class="nav-link" routerLink='/login' routerLinkActive="active-route">Login</a>

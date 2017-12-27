@@ -55,13 +55,8 @@
   </div>
   <div class="col-md-6">
     <p *ngIf="isFormEmpty()">Preview your product here :)</p>
-    <div *ngIf="!isFormEmpty()" class="card">
-        <img class="card-img-top" [src]="product?.imageUrl" *ngIf="product.imageUrl">
-        <div class="card-body">
-          <h4 class="card-title">{{ product.title }}</h4>
-          <p class="card-text">{{ product.price | currency:'EUR':'symbol':'0.2-2':'fi' }}</p>
-          <p class="card-text">{{ product.category | titlecase }}</p>
-        </div>
-      </div>
+    <ng-container *ngIf="!isFormEmpty()" class="card">
+       <lw-product-card [product]="product" [show-actions]="false"></lw-product-card>
+      </ng-container>
   </div>
 </div>
