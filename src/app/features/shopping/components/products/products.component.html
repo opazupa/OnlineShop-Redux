@@ -1,18 +1,17 @@
 <div class="row">
-  <div class="col-lg-3 col-md-6">
+  <div class="col-md-3 col-sm-12 col-xs-12">
     <lw-product-filter [category]="category"></lw-product-filter>
   </div>
-  <div class="col-lg-9 col-xs-10">
-    <div class="row">
+  <div class="col">
+    <div class="row" *ngIf="cart$ | async as cart">
+      <div class="card-columns">
         <ng-container *ngFor="let product of filteredProducts; let i = index">
-          <div class="col-xs-6 col-md-6 col-lg-4">
-            <lw-product-card [product]="product" [show-category]="false"></lw-product-card>
-          </div>
-          <!-- <div *ngIf="(i + 1) % 2 === 0" class="w-100"></div> -->
+            <lw-product-card class="fixedd" [product]="product" [shopping-cart]="cart" [show-category]="false"></lw-product-card>
         </ng-container>
       </div>
+    </div>
   </div>
-</div>
+</div> 
 
 
 

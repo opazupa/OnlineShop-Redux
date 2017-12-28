@@ -16,6 +16,7 @@ import { SharedModule } from '@app/shared';
     SharedModule
   ],
   declarations: [ProductsComponent, ShoppingCartComponent,
-    CheckOutComponent, OrderSuccessComponent, MyOrdersComponent, ProductFilterComponent]
+    CheckOutComponent, OrderSuccessComponent, MyOrdersComponent, ProductFilterComponent],
+  providers: []
 })
 export class ShoppingModule { }

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '@app/shared/services';
+import { Observable } from 'rxjs/Observable';
+import { AppUser } from '@app/shared/models';
 
 @Component({
   selector: 'lw-login',
@@ -8,9 +10,17 @@ import { AuthService } from '@app/shared/services';
 })
 export class LoginComponent {
 
-  constructor(private auth: AuthService) { }
+appUser$: Observable<AppUser>;
+
+  constructor(private auth: AuthService) {
+    this.appUser$ = this.auth.appUser$;
+   }
 
   login() {
     this.auth.login();
+  }
+
+  logout() {
+    this.auth.logout();
   }
 }

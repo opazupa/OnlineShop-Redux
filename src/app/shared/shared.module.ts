@@ -12,6 +12,8 @@ import { ProductService } from './services/product.service';
 import { ErrorBoxComponent } from './components/error-box/error-box.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
+import { ShoppingCartService } from './services/shopping-cart.service';
+import { ProductQuantityComponent } from './components/product-quantity/product-quantity.component';
 
 @NgModule({
   imports: [
@@ -30,9 +32,10 @@ import { ProductCardComponent } from './components/product-card/product-card.com
     NgbModule.forRoot().ngModule,
     ErrorBoxComponent,
     SpinnerComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    ProductQuantityComponent
   ],
-  declarations: [ErrorBoxComponent, SpinnerComponent, ProductCardComponent],
-  providers: [AuthService, AuthGuard, UserService, CategoryService, ProductService]
+  declarations: [ErrorBoxComponent, SpinnerComponent, ProductCardComponent, ProductQuantityComponent],
+  providers: [AuthService, AuthGuard, UserService, CategoryService, ProductService, ShoppingCartService]
 })
 export class SharedModule { }

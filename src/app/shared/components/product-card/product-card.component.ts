@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Product } from '../../models';
+import { ShoppingCartService } from '@app/shared/services';
 
 @Component({
   selector: 'lw-product-card',
@@ -16,7 +17,13 @@ export class ProductCardComponent {
   // tslint:disable-next-line:no-input-rename
   @Input('show-category')
   showCategory = true;
+  // tslint:disable-next-line:no-input-rename
+  @Input('shopping-cart')
+  shoppingCart;
 
-  constructor() { }
+  constructor(private cartService: ShoppingCartService) { }
 
+  addToCart(): void {
+    this.cartService.addToCart(this.product);
+  }
 }

@@ -7,11 +7,16 @@
     <ul class="navbar-nav ml-auto">
       <li class="nav-item" (click)="close()">
         <a class="nav-link" routerLink='/shop/shopping-cart' routerLinkActive="active-route">
-          <i class="fa fa-shopping-cart" aria-hidden="true"></i> Shopping Cart</a>
+          <i class="fa fa-shopping-cart" aria-hidden="true">
+            <span *ngIf="cart$ | async as cart" class="badge badge-warning badge-pill">{{ cart.totalItemsCount}}</span>
+          </i> 
+          Shopping Cart
+        </a>
       </li>
       <li class="nav-item" (click)="close()">
-          <a class="nav-link" routerLink='shop/products' routerLinkActive="active-route">
-            <i class="fa fa-paw" aria-hidden="true"></i> Products</a>
+        <a class="nav-link" routerLink='shop/products' routerLinkActive="active-route">
+          Products
+        </a>
         </li>
       <ng-template #anonymousUser>
         <li class="nav-item" (click)="close()">

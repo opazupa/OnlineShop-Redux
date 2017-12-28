@@ -17,9 +17,8 @@ export class UserService {
     });
   }
 
-  // Why isn't this okey with Obsevable<AppUser>
-  get(uid: string): Observable<any>  {
-    return this.db.object('/users/' + uid).valueChanges();
+  get(uid: string): Observable<AppUser>  {
+    return this.db.object('/users/' + uid).valueChanges() as Observable<AppUser>;
   }
 
 }
