@@ -1,0 +1,41 @@
+<form [formGroup]="shippingForm" (ngSubmit)="placeOrder()">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" formControlName="name" >
+      <lw-error-box *ngIf="validateFormControl('name')">
+        Name required.
+      </lw-error-box>
+    </div>
+    <div class="form-group">
+      <label for="address">Address</label>
+          <input type="text" class="form-control" id="address" formControlName="address">
+        <lw-error-box *ngIf="validateFormControl('address')">
+          <div *ngIf="shippingForm.get('address').hasError('required')">
+            Address required.
+          </div>
+        </lw-error-box>
+    </div>
+    <div class="form-group">
+      <label for="city">City</label>
+      <input type="text" class="form-control" id="city" formControlName="city">
+      <lw-error-box *ngIf="validateFormControl('city')">
+        City required.
+      </lw-error-box>
+    </div>
+    <div class="form-group">
+      <label for="zipCode">Zip Code</label>
+      <input type="URL" class="form-control" id="zipCode" formControlName="zipCode">
+      <lw-error-box *ngIf="validateFormControl('zipCode')">
+        <div *ngIf="shippingForm.get('zipCode').hasError('required')">
+          Zip code required.
+        </div>
+      </lw-error-box>
+    </div>
+    <div class="form-group">
+      <label for="additionalInfo">Additional Info</label>
+      <textarea class="form-control no-validate" id="additionalInfo" formControlName="additionalInfo" rows="3"></textarea>
+    </div>
+    <div>
+      <button class="btn btn-primary" [disabled]="shippingForm.invalid" type="submit">Place Order</button>
+    </div>
+  </form>

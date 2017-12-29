@@ -1,0 +1,16 @@
+
+  input.ng-valid:not(form)  {
+    border-left: 5px solid #42A948; /* green */
+  }
+  
+  input.ng-invalid:not(form)  {
+    border-left: 5px solid #a94442; /* red */
+  }
+  
+  .form-group > label {
+    font-weight: bold; 
+  }
+  
+  form {
+    padding-bottom: 30px;
+  }

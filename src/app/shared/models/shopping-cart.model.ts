@@ -36,4 +36,8 @@ export class ShoppingCart {
     const item = this.itemsMap[product.key];
     return item ? item.quantity : 0;
   }
+
+  get isEmpty(): boolean {
+    return this.items.length === 0;
+  }
 }

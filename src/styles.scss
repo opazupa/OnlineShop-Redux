@@ -11,6 +11,7 @@ $fa-font-path: "../node_modules/font-awesome/fonts";
 @import url("https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900");
 
 $primary-color: orange;
+$primary-color-disabled: rgb(253, 198, 95);
 $primary-color-hover: #f58d06;
 $secondary-color:#edc478;
 $secondary-color-hover: #e7b04b;
@@ -83,8 +84,8 @@ h1, h2, h3 {
 }
 
 .btn-primary.disabled, .btn-primary:disabled {
-  background-color: $primary-color;
-  border-color: $primary-color;
+  background-color: $primary-color-disabled;
+  border-color: $primary-color-disabled;
 }
 
 .btn-secondary {
@@ -125,4 +126,14 @@ h1, h2, h3 {
     line-height: 1!important;
     background: $primary-color;
   }
+}
+
+.mobile-hidden {
+  @media screen and (max-width: 554px) {
+    display: none;
+  }
+}
+.action-buttons {
+  padding-right: 20px;
+  text-align: right;
 }

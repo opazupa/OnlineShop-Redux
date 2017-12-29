@@ -8,6 +8,8 @@ import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 import { ShoppingRoutingModule } from './shopping-routing.module';
 import { ProductFilterComponent } from './components/products/product-filter/product-filter.component';
 import { SharedModule } from '@app/shared';
+import { ShoppingCartSummaryComponent } from './components/shopping-cart-summary/shopping-cart-summary.component';
+import { ShippingFormComponent } from './components/shipping-form/shipping-form.component';
 
 @NgModule({
   imports: [
@@ -16,7 +18,8 @@ import { SharedModule } from '@app/shared';
     SharedModule
   ],
   declarations: [ProductsComponent, ShoppingCartComponent,
-    CheckOutComponent, OrderSuccessComponent, MyOrdersComponent, ProductFilterComponent],
+    CheckOutComponent, OrderSuccessComponent, MyOrdersComponent, ProductFilterComponent, ShoppingCartSummaryComponent,
+     ShippingFormComponent],
   providers: []
 })
 export class ShoppingModule { }

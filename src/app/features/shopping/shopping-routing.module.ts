@@ -10,11 +10,11 @@ import { AuthGuard } from '../../shared/services';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'products' },
+  { path: 'order-success/:id', component: OrderSuccessComponent, canActivate: [AuthGuard] },
   { path: 'products',  component: ProductsComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent} ,
   { path: 'my-orders',  component: MyOrdersComponent, canActivate: [AuthGuard] },
-  { path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard] },
-  { path: 'order-success', component: OrderSuccessComponent, canActivate: [AuthGuard] }
+  { path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

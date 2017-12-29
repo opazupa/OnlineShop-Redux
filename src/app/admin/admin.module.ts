@@ -6,14 +6,12 @@ import { AdminRoutingModule } from '../admin/admin-routing.module';
 import { AdminAuthGuard } from './services/admin-auth-guard.service';
 import { ProductFormComponent } from './components/product-form/product-form.component';
 import { SharedModule } from '@app/shared';
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 @NgModule({
   imports: [
     CommonModule,
     AdminRoutingModule,
-    SharedModule,
-    NgxDatatableModule
+    SharedModule
   ],
   declarations: [AdminProductsComponent, AdminOrdersComponent, ProductFormComponent],
   providers: [AdminAuthGuard]

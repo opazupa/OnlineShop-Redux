@@ -14,6 +14,9 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { ShoppingCartService } from './services/shopping-cart.service';
 import { ProductQuantityComponent } from './components/product-quantity/product-quantity.component';
+import { OrderService } from './services/order.service';
+import { OrderDetailComponent } from '@app/shared/components/order-detail/order-detail.component';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 @NgModule({
   imports: [
@@ -22,6 +25,7 @@ import { ProductQuantityComponent } from './components/product-quantity/product-
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     NgbModule.forRoot(),
+    NgxDatatableModule
   ],
   exports: [
     CommonModule,
@@ -30,12 +34,14 @@ import { ProductQuantityComponent } from './components/product-quantity/product-
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     NgbModule.forRoot().ngModule,
+    NgxDatatableModule,
     ErrorBoxComponent,
     SpinnerComponent,
     ProductCardComponent,
-    ProductQuantityComponent
+    ProductQuantityComponent,
+    OrderDetailComponent
   ],
-  declarations: [ErrorBoxComponent, SpinnerComponent, ProductCardComponent, ProductQuantityComponent],
-  providers: [AuthService, AuthGuard, UserService, CategoryService, ProductService, ShoppingCartService]
+  declarations: [ErrorBoxComponent, SpinnerComponent, ProductCardComponent, ProductQuantityComponent, OrderDetailComponent],
+  providers: [AuthService, AuthGuard, UserService, CategoryService, ProductService, ShoppingCartService, OrderService]
 })
 export class SharedModule { }
