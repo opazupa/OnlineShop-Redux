@@ -9,7 +9,7 @@
         <li class="nav-item" (click)="close()">
           <a class="nav-link" routerLink='/shop/shopping-cart' routerLinkActive="active-route">
             <i class="fa fa-2x fa-shopping-cart" aria-hidden="true">
-              <span *ngIf="cart$ | async as cart" class="badge badge-warning badge-pill">{{ cart.totalItemsCount}}</span>
+              <span *ngIf="cart$ | async as cart" class="badge badge-warning badge-pill">{{ cart.totalItemsCount }}</span>
             </i>
           </a>
         </li>
@@ -27,7 +27,7 @@
         </li>
         <ng-template #anonymousUser>
           <li class="nav-item" (click)="close()">
-            <a class="nav-link" routerLink='/login' routerLinkActive="active-route">Login</a>
+            <a class="nav-link" (click)="openLoginModal()">Login</a>
           </li>
        </ng-template>
         <li ngbDropdown *ngIf="appUser$ | async as user; else anonymousUser" class="nav-item dropdown" placement="bottom-right">

@@ -1,16 +1,16 @@
-import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { AppUser } from './../../../shared/models/user.model';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { AuthService, ShoppingCartService } from '@app/shared/services';
 import { ShoppingCart } from '@app/shared/models';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { LoginModalComponent } from '../login/login-modal/login-modal.component';
 
 @Component({
   selector: 'lw-navigation',
   templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.scss'],
-  providers: [NgbCarouselConfig]
+  styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent implements OnInit {
 
@@ -21,10 +21,9 @@ export class NavigationComponent implements OnInit {
   constructor(
     private auth: AuthService,
     private cartService: ShoppingCartService,
-    config: NgbCarouselConfig) {
-    config.interval = 10000;
-    config.wrap = false;
-    config.keyboard = false;
+    private modalService: NgbModal
+    ) {
+
   }
 
   async ngOnInit() {
@@ -43,6 +42,10 @@ export class NavigationComponent implements OnInit {
   logout() {
     this.auth.logout();
     this.close();
+  }
+
+  openLoginModal(): void {
+    this.modalService.open(LoginModalComponent);
   }
 
 }

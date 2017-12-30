@@ -1,10 +1,10 @@
 <h1>Shopping cart</h1>
 <ng-container *ngIf="cart$ | async as cart">
   <p>
-    You have {{ cart.totalItemsCount }} items in your shopping cart
+    You have {{ cart.totalItemsCount }} items in your shopping cart. 
     <button 
     (click)="clearCart()"
-    class="btn btn-light btn-sm">
+    class="btn btn-outline-dark btn-sm">
     Clear Shopping Cart
   </button>
   </p>

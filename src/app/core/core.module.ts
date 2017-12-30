@@ -10,6 +10,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { AnimatedToggleComponent } from './components/animated-toggle/animated-toggle.component';
+import { LoginModalComponent } from './components/login/login-modal/login-modal.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { AnimatedToggleComponent } from './components/animated-toggle/animated-t
     NgxDatatableModule
   ],
   exports: [NavigationComponent, FooterComponent],
-  declarations: [FooterComponent, NavigationComponent, HomeComponent, LoginComponent, AnimatedToggleComponent],
-  providers: []
+  declarations: [FooterComponent, NavigationComponent, HomeComponent, LoginComponent, AnimatedToggleComponent, LoginModalComponent],
+  providers: [],
+  entryComponents: [LoginModalComponent]
 })
 export class CoreModule { }
