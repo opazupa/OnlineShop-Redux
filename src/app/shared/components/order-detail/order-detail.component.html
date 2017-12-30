@@ -1,3 +1,32 @@
-<p>
-  order-detail works!
-</p>
+<div class="text-left">
+  <button class="btn btn-light" (click)="return()"><i class="fa fa-arrow-left"></i> Return</button>
+</div>
+<div class="card" *ngIf="order$ | async as order; else spinner">
+  <div class="card-body">
+    <h4 class="card-title">Order Summary</h4>
+    <p class="card-text"><b>Id:  </b>{{ order.key }}</p>
+    <p class="card-text">{{ order.datePlaced | date}}</p>
+    <h5 class="card-title">Items</h5>
+    <ul class="list-group list-group-flush">
+      <li *ngFor="let item of order.items" class="list-group-item">
+        {{ item.quantity }} x {{ item.product.title }}
+        <div class="float-left thumbnail" [style.backgroundImage]="'url(' + item.product.imageUrl + ')'"></div>
+        <div class="float-right">
+          {{ item.totalPrice | currency:'EUR':'symbol':'0.2-2':'fi' }}
+        </div>
+      </li>
+      <li class="list-group-item font-weight-bold">
+        <div class="float-left">
+            Total 
+        </div>
+          {{ order.totalItemsCount }} pcs
+        <div class="float-right">
+          {{ order.totalPrice | currency:'EUR':'symbol':'0.2-2':'fi' }}
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<ng-template #spinner>
+  <lw-spinner></lw-spinner>
+</ng-template>  

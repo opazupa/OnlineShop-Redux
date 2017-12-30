@@ -27,8 +27,6 @@ export class MyOrdersComponent implements OnInit {
   }
 
   viewOrder(order: Order) {
-    //this.router.navigate([`/admin/orders/${order.key}`]);
-    console.log(this.order);
-    console.log(this.order.totalPrice);
+    this.router.navigate([`/shop/my-orders/${order.key}`]);
   }
 }

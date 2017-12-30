@@ -13,7 +13,7 @@ export const routes: Routes = [
   { path: '', redirectTo: 'products', pathMatch: 'full' , canActivate: [AuthGuard, AdminAuthGuard] },
   { path: 'products/new',  component: ProductFormComponent, canActivate: [AuthGuard, AdminAuthGuard] },
   { path: 'products/:id',  component: ProductFormComponent, canActivate: [AuthGuard, AdminAuthGuard] },
-  { path: 'orders/:id', component: OrderDetailComponent, canActivate: [AuthGuard, AdminAuthGuard]},
+  { path: 'orders/:orderId', component: OrderDetailComponent, canActivate: [AuthGuard, AdminAuthGuard]},
   { path: 'products',  component: AdminProductsComponent, canActivate: [AuthGuard, AdminAuthGuard] },
   { path: 'orders', component: AdminOrdersComponent, canActivate: [AuthGuard, AdminAuthGuard]}
 ];

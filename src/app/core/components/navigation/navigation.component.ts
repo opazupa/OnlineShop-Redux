@@ -1,3 +1,4 @@
+import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { AppUser } from './../../../shared/models/user.model';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
@@ -8,7 +9,8 @@ import { ShoppingCart } from '@app/shared/models';
 @Component({
   selector: 'lw-navigation',
   templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.scss']
+  styleUrls: ['./navigation.component.scss'],
+  providers: [NgbCarouselConfig]
 })
 export class NavigationComponent implements OnInit {
 
@@ -18,7 +20,11 @@ export class NavigationComponent implements OnInit {
 
   constructor(
     private auth: AuthService,
-    private cartService: ShoppingCartService) {
+    private cartService: ShoppingCartService,
+    config: NgbCarouselConfig) {
+    config.interval = 10000;
+    config.wrap = false;
+    config.keyboard = false;
   }
 
   async ngOnInit() {

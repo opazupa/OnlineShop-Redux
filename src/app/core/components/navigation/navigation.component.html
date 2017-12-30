@@ -19,7 +19,12 @@
           <a class="nav-link" routerLink='shop/products' routerLinkActive="active-route">
             Products
           </a>
-          </li>
+        </li>
+        <li class="nav-item" (click)="close()">
+          <a class="nav-link" routerLink='shop/offers' routerLinkActive="active-route">
+            Offers
+          </a>
+        </li>
         <ng-template #anonymousUser>
           <li class="nav-item" (click)="close()">
             <a class="nav-link" routerLink='/login' routerLinkActive="active-route">Login</a>

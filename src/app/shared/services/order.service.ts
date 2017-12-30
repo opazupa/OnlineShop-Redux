@@ -35,9 +35,10 @@ export class OrderService {
   }
 
   getOrderById(orderId: string): Observable<Order>{
-    const order$ = this.db.object('/orders/' + orderId).valueChanges() as Observable<any>;
+    const order$ = this.db.object('/orders/' + orderId).snapshotChanges() as Observable<any>;
     return order$.map(o => {
-      return Object.assign(new Order(), o);
+      const order = <Order>({ key: o.payload.key, ...o.payload.val() });
+      return Object.assign(new Order(), order);
     });
   }
 }
