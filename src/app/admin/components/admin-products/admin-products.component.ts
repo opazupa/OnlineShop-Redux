@@ -34,12 +34,13 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   }
 
   editProduct(product: Product){
-    // this.productService
     this.router.navigate([`/admin/products/${product.key}`]);
   }
 
   deleteProduct(product: Product){
-    this.productService.deleteProduct(product.key);
+    if (confirm('U sure!')){
+      this.productService.deleteProduct(product.key);
+    }
   }
 
 }
