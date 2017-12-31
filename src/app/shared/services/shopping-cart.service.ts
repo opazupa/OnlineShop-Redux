@@ -1,10 +1,12 @@
-import { NotificationService } from './notification.service';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/take';
+
 import { Injectable } from '@angular/core';
+import { Product, ShoppingCart } from '@app/shared/models';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
-import { Product, ShoppingCart } from '@app/shared/models';
-import 'rxjs/add/operator/take';
-import 'rxjs/add/operator/map';
+
+import { NotificationService } from './notification.service';
 
 @Injectable()
 export class ShoppingCartService {
@@ -60,6 +62,7 @@ export class ShoppingCartService {
 
       if (quantity === 0) {
         item$.remove();
+        
       } else {
 
         item$.update({

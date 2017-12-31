@@ -1,7 +1,7 @@
-import { Observable } from 'rxjs/Observable';
 import { Component, OnInit } from '@angular/core';
-import { ShoppingCartService } from '@app/shared/services';
 import { ShoppingCart } from '@app/shared/models';
+import { ShoppingCartService } from '@app/shared/services';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'lw-check-out',
@@ -16,7 +16,7 @@ export class CheckOutComponent implements OnInit {
 
   async ngOnInit() {
 
-  this.cart$ = await this.cartService.getCart();
+    this.cart$ = await this.cartService.getCart();
 
   }
 

@@ -2,34 +2,34 @@
 <ng-container *ngIf="orders$ | async as orders">
   <div class=" table-responsive">
     <table class="table">
-        <thead>
-          <tr>
-            <th class="text-left">Date</th>
-            <th class="text-center">Pieces</th>
-            <th class="text-right">Price</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let order of orders">
-            <td class="text-left">
-              {{ order.datePlaced | date}}
-            </td>
-            <td class="text-center">
-              {{ order.totalItemsCount }}
-            </td>
-            <td class="text-right">
-                {{ order.totalPrice | currency:'EUR':'symbol':'0.2-2':'fi' }}
-            </td>
-            <td>
-              <div class="action-buttons">
-                <button class="btn btn-link" (click)="viewOrder(order)">
-                  View
-                </button>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <thead>
+        <tr>
+          <th class="text-left">Date</th>
+          <th class="text-center">Pieces</th>
+          <th class="text-right">Price</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders">
+          <td class="text-left">
+            {{ order.datePlaced | date}}
+          </td>
+          <td class="text-center">
+            {{ order.totalItemsCount }}
+          </td>
+          <td class="text-right">
+            {{ order.totalPrice | currency:'EUR':'symbol':'0.2-2':'fi' }}
+          </td>
+          <td>
+            <div class="action-buttons">
+              <button class="btn btn-link" (click)="viewOrder(order)">
+                View
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </ng-container>

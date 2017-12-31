@@ -3,7 +3,7 @@
     <form [formGroup]="productForm" (ngSubmit)="saveProduct()">
       <div class="form-group">
         <label for="title">Title</label>
-        <input type="text" [(ngModel)]="product.title" class="form-control" id="title" formControlName="title" >
+        <input type="text" [(ngModel)]="product.title" class="form-control" id="title" formControlName="title">
         <lw-error-box *ngIf="validateFormControl('title')">
           Title required.
         </lw-error-box>
@@ -11,21 +11,21 @@
       <div class="form-group">
         <label for="price">Price</label>
         <div class="input-group">
-            <input type="text" [(ngModel)]="product.price" class="form-control" id="price" formControlName="price">
-            <span class="input-group-addon">€</span>
+          <input type="text" [(ngModel)]="product.price" class="form-control" id="price" formControlName="price">
+          <span class="input-group-addon">€</span>
+        </div>
+        <lw-error-box *ngIf="validateFormControl('price')">
+          <div *ngIf="productForm.get('price').hasError('required')">
+            Price required.
           </div>
-          <lw-error-box *ngIf="validateFormControl('price')">
-            <div *ngIf="productForm.get('price').hasError('required')">
-              Price required.
-            </div>
-            <div *ngIf="productForm.get('price').hasError('min') || productForm.get('price').hasError('number')">
-              Price must be a number greater than 0 €.
-            </div>
-          </lw-error-box>
+          <div *ngIf="productForm.get('price').hasError('min') || productForm.get('price').hasError('number')">
+            Price must be a number greater than 0 €.
+          </div>
+        </lw-error-box>
       </div>
       <div class="form-group">
         <label for="category">Category</label>
-        <select [(ngModel)]="product.category" class="form-control" id="category" formControlName="category" >
+        <select [(ngModel)]="product.category" class="form-control" id="category" formControlName="category">
           <option></option>
           <option *ngFor="let category of categories$ | async" [value]="category.key">
             {{category.name}}
@@ -56,7 +56,7 @@
   <div class="col-md-6">
     <p *ngIf="isFormEmpty()">Preview your product here :)</p>
     <ng-container *ngIf="!isFormEmpty()" class="card">
-       <lw-product-card [product]="product" [show-actions]="false"></lw-product-card>
-      </ng-container>
+      <lw-product-card [product]="product" [show-actions]="false"></lw-product-card>
+    </ng-container>
   </div>
 </div>

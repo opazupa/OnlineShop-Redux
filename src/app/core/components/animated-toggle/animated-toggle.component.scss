@@ -15,7 +15,7 @@ div {
   cursor: pointer;
 }
 
-div > span {
+div>span {
   line-height: 0.5;
   display: block;
   position: absolute;
@@ -33,19 +33,20 @@ div > span {
   -o-transition: .25s ease-in-out;
   transition: .25s ease-in-out;
 }
-div > span:nth-child(1) {
+
+div>span:nth-child(1) {
   top: 0px;
 }
 
-div > span:nth-child(2) {
+div>span:nth-child(2) {
   top: 10px;
 }
 
-div > span:nth-child(3) {
+div>span:nth-child(3) {
   top: 20px;
 }
 
-div.open > span:nth-child(1) {
+div.open>span:nth-child(1) {
   top: 10px;
   -webkit-transform: rotate(135deg);
   -moz-transform: rotate(135deg);
@@ -53,12 +54,12 @@ div.open > span:nth-child(1) {
   transform: rotate(135deg);
 }
 
-div.open > span:nth-child(2) {
+div.open>span:nth-child(2) {
   opacity: 0;
   left: -60px;
 }
 
-div.open > span:nth-child(3) {
+div.open>span:nth-child(3) {
   top: 10px;
   -webkit-transform: rotate(-135deg);
   -moz-transform: rotate(-135deg);

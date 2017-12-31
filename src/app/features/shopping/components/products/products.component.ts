@@ -1,10 +1,10 @@
+import 'rxjs/add/operator/switchMap';
+
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Product, ShoppingCart } from '@app/shared/models';
 import { ProductService, ShoppingCartService } from '@app/shared/services';
 import { Observable } from 'rxjs/Observable';
-import { Product, ShoppingCart } from '@app/shared/models';
-import { ActivatedRoute } from '@angular/router';
-import 'rxjs/add/operator/switchMap';
-import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'lw-products',

@@ -1,9 +1,10 @@
-import { Order } from './../../models/order.model';
-import { Component, OnInit, Input } from '@angular/core';
-import { OrderService } from '../../services/order.service';
-import { Observable } from 'rxjs/Observable';
+import { Location } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import {Location} from '@angular/common';
+import { Observable } from 'rxjs/Observable';
+
+import { OrderService } from '../../services/order.service';
+import { Order } from './../../models/order.model';
 
 @Component({
   selector: 'lw-order-detail',
@@ -17,7 +18,7 @@ export class OrderDetailComponent implements OnInit {
 
   constructor(private orderService: OrderService, private route: ActivatedRoute, private location: Location) {
     this.orderId = this.route.snapshot.params.orderId;
-   }
+  }
 
   ngOnInit() {
     this.order$ = this.orderService.getOrderById(this.orderId);

@@ -1,8 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
+import { Product } from '@app/shared/models';
 import { ProductService } from '@app/shared/services';
 import { Observable } from 'rxjs/Observable';
-import { Product } from '@app/shared/models';
-import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs/Subscription';
   templateUrl: './admin-products.component.html',
   styleUrls: ['./admin-products.component.scss']
 })
-export class AdminProductsComponent implements OnInit, OnDestroy {
+export class AdminProductsComponent implements OnDestroy {
 
   products: Product[];
   filteredProducts: Product[];
@@ -18,9 +18,6 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
 
   constructor(private productService: ProductService, private router: Router) {
     this.subscription = this.productService.getAll().subscribe(ps => this.filteredProducts = this.products = ps);
-  }
-
-  ngOnInit() {
   }
 
   ngOnDestroy() {

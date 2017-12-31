@@ -1,11 +1,12 @@
 import { Product } from '@app/shared/models';
+
 import { ShoppingCartItem } from './shopping-cart-item.model';
 
 export class ShoppingCart {
 
   items: ShoppingCartItem[] = [];
 
-  constructor(private itemsMap: {[key: string]: ShoppingCartItem}) {
+  constructor(private itemsMap: { [key: string]: ShoppingCartItem }) {
     this.itemsMap = itemsMap || {};
 
     for (const productId in itemsMap) {
@@ -14,7 +15,7 @@ export class ShoppingCart {
         new ShoppingCartItem({
           ...itemsMap[productId],
           key: productId
-          }));
+        }));
     }
   }
 
@@ -32,12 +33,12 @@ export class ShoppingCart {
     return sum;
   }
 
+  get isEmpty(): boolean {
+    return this.items.length === 0;
+  }
+
   getQuantity(product: Product): number {
     const item = this.itemsMap[product.key];
     return item ? item.quantity : 0;
-  }
-
-  get isEmpty(): boolean {
-    return this.items.length === 0;
   }
 }

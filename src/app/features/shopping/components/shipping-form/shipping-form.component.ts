@@ -1,10 +1,10 @@
-import { Subscription } from 'rxjs/Subscription';
-import { Router } from '@angular/router';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Order, ShippingInformation, ShoppingCart } from '@app/shared/models';
+import { AuthService, OrderService } from '@app/shared/services';
 import { CustomValidators } from 'ng2-validation';
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { OrderService, AuthService } from '@app/shared/services';
-import { ShoppingCart, AppUser, Order, ShippingInformation } from '@app/shared/models';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'lw-shipping-form',
@@ -13,13 +13,13 @@ import { ShoppingCart, AppUser, Order, ShippingInformation } from '@app/shared/m
 })
 export class ShippingFormComponent implements OnInit, OnDestroy {
 
-@Input('shopping-cart')
-cart: ShoppingCart;
-shippingForm: FormGroup;
-subscription: Subscription;
-userId: string;
+  @Input('shopping-cart')
+  cart: ShoppingCart;
+  shippingForm: FormGroup;
+  subscription: Subscription;
+  userId: string;
 
-constructor(private fb: FormBuilder,
+  constructor(private fb: FormBuilder,
     private auth: AuthService,
     private orderService: OrderService,
     private router: Router) { }
@@ -29,7 +29,7 @@ constructor(private fb: FormBuilder,
       name: ['', Validators.compose([Validators.required])],
       address: ['', Validators.compose([Validators.required, Validators.min(0)])],
       city: ['', Validators.required],
-      zipCode:  ['', Validators.compose([Validators.required, CustomValidators.number])],
+      zipCode: ['', Validators.compose([Validators.required, CustomValidators.number])],
       additionalInfo: ['']
     });
 
@@ -67,7 +67,7 @@ constructor(private fb: FormBuilder,
   isFormEmpty(): Boolean {
     let result = true;
     Object.keys(this.shippingForm.controls).forEach(key => {
-      if (this.shippingForm.get(key).value !== undefined && !this.shippingForm.get(key).errors ) {
+      if (this.shippingForm.get(key).value !== undefined && !this.shippingForm.get(key).errors) {
         result = false;
       }
     });

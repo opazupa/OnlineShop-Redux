@@ -6,7 +6,7 @@ export class OrderItem {
   quantity: number;
   totalPrice: number;
 
-  constructor(item: ShoppingCartItem){
+  constructor(item: ShoppingCartItem) {
     this.product.title = item.title;
     this.product.imageUrl = item.imageUrl;
     this.product.price = item.price;

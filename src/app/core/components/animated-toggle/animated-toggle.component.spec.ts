@@ -8,9 +8,9 @@ describe('AnimatedToggleComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AnimatedToggleComponent ]
+      declarations: [AnimatedToggleComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

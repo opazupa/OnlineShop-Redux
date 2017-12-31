@@ -1,21 +1,20 @@
-import { ShoppingCart } from './shopping-cart.model';
 import { OrderItem } from './order-item.model';
 import { ShippingInformation } from './shipping.model';
+import { ShoppingCart } from './shopping-cart.model';
 
 export class Order {
   key: string;
   datePlaced: number;
   items: OrderItem[] = [];
 
-  
+
   constructor(public userId?: string, public shipping?: ShippingInformation, shoppingCart?: ShoppingCart) {
     this.datePlaced = new Date().getTime();
 
-     this.items = shoppingCart ? shoppingCart.items.map(item => {
-        return new OrderItem(item);
-      }) : [];
+    this.items = shoppingCart ? shoppingCart.items.map(item => {
+      return new OrderItem(item);
+    }) : [];
   }
-  
 
   get totalItemsCount(): number {
     let count = 0;

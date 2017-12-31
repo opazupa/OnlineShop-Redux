@@ -1,6 +1,7 @@
-import { Product } from '@app/shared/models';
-import { ShoppingCartService } from '../../services/shopping-cart.service';
 import { Component, Input } from '@angular/core';
+import { Product } from '@app/shared/models';
+
+import { ShoppingCartService } from '../../services/shopping-cart.service';
 
 @Component({
   selector: 'lw-product-quantity',
@@ -11,8 +12,6 @@ export class ProductQuantityComponent {
 
   @Input('product')
   product: Product;
-  // tslint:disable-next-line:no-input-rename
-  // tslint:disable-next-line:no-input-rename
   @Input('shopping-cart')
   shoppingCart;
 

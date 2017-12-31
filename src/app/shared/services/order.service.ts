@@ -1,10 +1,12 @@
+import 'rxjs/add/operator/map';
+
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { ShoppingCartService } from './shopping-cart.service';
-import { Order } from '../models';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
+
+import { Order } from '../models';
 import { NotificationService } from './notification.service';
+import { ShoppingCartService } from './shopping-cart.service';
 
 @Injectable()
 export class OrderService {

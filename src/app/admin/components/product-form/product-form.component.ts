@@ -1,11 +1,12 @@
-import { CustomValidators } from 'ng2-validation';
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { CategoryService, ProductService } from '@app/shared/services';
-import { Observable } from 'rxjs/Observable';
-import { Product } from '@app/shared/models';
-import { Router, ActivatedRoute } from '@angular/router';
 import 'rxjs/add/operator/take';
+
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Product } from '@app/shared/models';
+import { CategoryService, ProductService } from '@app/shared/services';
+import { CustomValidators } from 'ng2-validation';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'lw-product-form',
@@ -34,7 +35,7 @@ export class ProductFormComponent implements OnInit {
   }
 
   ngOnInit() {
-      this.productForm = this.fb.group({
+    this.productForm = this.fb.group({
       title: ['', Validators.compose([Validators.required])],
       price: ['', Validators.compose([Validators.required, Validators.min(0), CustomValidators.number])],
       category: ['', Validators.required],
@@ -80,7 +81,7 @@ export class ProductFormComponent implements OnInit {
   isFormEmpty(): Boolean {
     let result = true;
     Object.keys(this.productForm.controls).forEach(key => {
-      if (this.productForm.get(key).value !== undefined && !this.productForm.get(key).errors ) {
+      if (this.productForm.get(key).value !== undefined && !this.productForm.get(key).errors) {
         result = false;
       }
     });

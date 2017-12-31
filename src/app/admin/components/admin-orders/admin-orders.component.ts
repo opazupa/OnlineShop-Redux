@@ -1,6 +1,6 @@
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Order } from '@app/shared/models';
-import { Component, OnInit } from '@angular/core';
 import { OrderService } from '@app/shared/services';
 import { Observable } from 'rxjs/Observable';
 
@@ -9,15 +9,12 @@ import { Observable } from 'rxjs/Observable';
   templateUrl: './admin-orders.component.html',
   styleUrls: ['./admin-orders.component.scss']
 })
-export class AdminOrdersComponent implements OnInit {
+export class AdminOrdersComponent {
 
   orders$: Observable<Order[]>;
 
-  constructor(private orderService: OrderService, private router: Router) { 
+  constructor(private orderService: OrderService, private router: Router) {
     this.orders$ = this.orderService.getOrders();
-  }
-
-  ngOnInit() {
   }
 
   viewOrder(order: Order) {

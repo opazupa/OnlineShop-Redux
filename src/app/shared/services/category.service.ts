@@ -9,8 +9,8 @@ export class CategoryService {
 
   getAll(): Observable<any> {
     return this.db.list('/categories', c => c.orderByChild('name')).snapshotChanges()
-    .map(changes => {
-      return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
-    });
+      .map(changes => {
+        return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+      });
   }
 }

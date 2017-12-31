@@ -1,16 +1,14 @@
-import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import { FooterComponent } from './components/footer/footer.component';
-import { NavigationComponent } from './components/navigation/navigation.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { SharedModule } from '@app/shared';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { HomeComponent } from './components/home/home.component';
-import { LoginComponent } from './components/login/login.component';
+
 import { AnimatedToggleComponent } from './components/animated-toggle/animated-toggle.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { HomeComponent } from './components/home/home.component';
 import { LoginModalComponent } from './components/login/login-modal/login-modal.component';
+import { LoginComponent } from './components/login/login.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
 
 
 @NgModule({
@@ -20,7 +18,14 @@ import { LoginModalComponent } from './components/login/login-modal/login-modal.
     NgxDatatableModule
   ],
   exports: [NavigationComponent, FooterComponent],
-  declarations: [FooterComponent, NavigationComponent, HomeComponent, LoginComponent, AnimatedToggleComponent, LoginModalComponent],
+  declarations: [
+    FooterComponent,
+    NavigationComponent,
+    HomeComponent,
+    LoginComponent,
+    AnimatedToggleComponent,
+    LoginModalComponent
+  ],
   providers: [],
   entryComponents: [LoginModalComponent]
 })

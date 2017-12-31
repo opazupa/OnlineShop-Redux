@@ -1,10 +1,12 @@
-import { NotificationService } from './notification.service';
-import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
-import { Product } from '@app/shared/models';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/switchMap';
+
+import { Injectable } from '@angular/core';
+import { Product } from '@app/shared/models';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { Observable } from 'rxjs/Observable';
+
+import { NotificationService } from './notification.service';
 
 @Injectable()
 export class ProductService {

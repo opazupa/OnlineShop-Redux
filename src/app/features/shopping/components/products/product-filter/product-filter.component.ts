@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import { CategoryService } from '@app/shared/services';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'lw-product-filter',
@@ -13,7 +13,7 @@ export class ProductFilterComponent {
   category: string;
   categories$: Observable<any>;
 
-  constructor(private categoryService: CategoryService) { 
+  constructor(private categoryService: CategoryService) {
     this.categories$ = this.categoryService.getAll();
   }
 

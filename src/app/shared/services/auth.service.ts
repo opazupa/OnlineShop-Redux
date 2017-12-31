@@ -1,13 +1,15 @@
-import { AppUser } from '@app/shared/models';
-import { Injectable } from '@angular/core';
-import * as firebase from 'firebase';
-import { AngularFireAuth } from 'angularfire2/auth';
-import { Observable } from 'rxjs/Observable';
-import { ActivatedRoute, Router } from '@angular/router';
-import { UserService } from './user.service';
-import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/switchMap';
+
+import { Injectable } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AppUser } from '@app/shared/models';
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase';
+import { Observable } from 'rxjs/Observable';
+
 import { NotificationService } from './notification.service';
+import { UserService } from './user.service';
 
 @Injectable()
 export class AuthService {
