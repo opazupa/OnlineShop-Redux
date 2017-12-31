@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { ShoppingCart } from '@app/shared/models';
-import { ShoppingCartService } from '@app/shared/services';
+import { ShoppingCartService, NotificationService } from '@app/shared/services';
 
 @Component({
   selector: 'lw-shopping-cart',
@@ -12,13 +12,15 @@ export class ShoppingCartComponent implements OnInit {
 
   cart$: Observable<ShoppingCart>;
 
-  constructor(private cartService: ShoppingCartService) { }
+  constructor(private cartService: ShoppingCartService, private notificationService: NotificationService) { }
 
   async ngOnInit() {
     this.cart$ = await this.cartService.getCart();
   }
 
   clearCart(): void {
-    this.cartService.clearCart();
+    this.cartService.clearCart()
+      .then(() => this.notificationService.popSuccessToast('Shopping cart cleared'))
+      .catch(() => this.notificationService.popErrorToast('Shopping cart failed to be cleared'));
   }
 }

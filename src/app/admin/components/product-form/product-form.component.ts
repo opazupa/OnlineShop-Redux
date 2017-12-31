@@ -55,8 +55,7 @@ export class ProductFormComponent implements OnInit {
   }
 
   deleteProduct(): void {
-    // TODO! BS form-->
-    if( confirm('U sure!')){
+    if (confirm('Are You sure to delete the selected product?')) {
       this.productService.deleteProduct(this.id);
       this.router.navigate(['/admin/products']);
     }

@@ -23,22 +23,22 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   ngOnInit() {
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 
-  filter(query?: string){
+  filter(query?: string) {
     this.filteredProducts = (query) ?
       this.products.filter(p => p.title.toLowerCase().includes(query.toLowerCase())) :
       this.products;
   }
 
-  editProduct(product: Product){
+  editProduct(product: Product) {
     this.router.navigate([`/admin/products/${product.key}`]);
   }
 
-  deleteProduct(product: Product){
-    if (confirm('U sure!')){
+  deleteProduct(product: Product) {
+    if (confirm('Are You sure to delete the selected product?')) {
       this.productService.deleteProduct(product.key);
     }
   }

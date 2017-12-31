@@ -1,3 +1,4 @@
+import { NotificationService } from './notification.service';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
@@ -8,12 +9,12 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ShoppingCartService {
 
-  constructor(private db: AngularFireDatabase) { }
+  constructor(private db: AngularFireDatabase, private notificationService: NotificationService) { }
 
   async getCart(): Promise<Observable<ShoppingCart>> {
     const cartId = await this.getOrCreateCartId();
     const cart$ = this.db.object('/shopping-carts/' + cartId).valueChanges() as Observable<any>;
-    return cart$.map(x =>  new ShoppingCart(x.items));
+    return cart$.map(x => new ShoppingCart(x.items));
   }
 
   async addToCart(product: Product) {
@@ -24,9 +25,9 @@ export class ShoppingCartService {
     this.updateItem(product, -1);
   }
 
-  async clearCart() {
+  async clearCart(): Promise<any> {
     const cartId = await this.getOrCreateCartId();
-    this.db.object('/shopping-carts/' + cartId + '/items').remove();
+    return this.db.object('/shopping-carts/' + cartId + '/items').remove();
   }
 
   private create() {
@@ -50,22 +51,23 @@ export class ShoppingCartService {
     return cartId;
   }
 
-  private async updateItem(product: Product, change: number){
+  private async updateItem(product: Product, change: number) {
     const cartId = await this.getOrCreateCartId();
     const item$ = this.getItem(cartId, product.key);
     item$.snapshotChanges().take(1).subscribe(item => {
-      
+
       const quantity = (item.payload.val() ? item.payload.val().quantity : 0) + change;
-      
+
       if (quantity === 0) {
         item$.remove();
       } else {
-        
-      item$.update({
-        title: product.title,
-        imageUrl: product.imageUrl,
-        price: product.price,
-        quantity: quantity });
+
+        item$.update({
+          title: product.title,
+          imageUrl: product.imageUrl,
+          price: product.price,
+          quantity: quantity
+        });
       }
     });
   }

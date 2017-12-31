@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService, UserService } from '@app/shared/services';
 import { Router } from '@angular/router';
+import { ToasterConfig } from 'angular2-toaster';
 
 @Component({
   selector: 'app-root',
@@ -22,4 +23,12 @@ export class AppComponent {
       }
     });
   }
+
+  public toasterconfig: ToasterConfig =
+    new ToasterConfig({
+      showCloseButton: false,
+      tapToDismiss: true,
+      timeout: 2000,
+      positionClass: 'toast-bottom-center'
+    });
 }

@@ -1,12 +1,30 @@
 <div class="text-left">
-  <button class="btn btn-outline-dark" (click)="return()"><i class="fa fa-arrow-left"></i> Return</button>
+  <button class="btn btn-outline-dark" (click)="return()">
+    <i class="fa fa-arrow-left"></i> Return</button>
 </div>
 <div class="card" *ngIf="order$ | async as order; else spinner">
   <div class="card-body">
     <h4 class="card-title">Order Summary</h4>
-    <p class="card-text"><b>Id:  </b>{{ order.key }}</p>
-    <p class="card-text">{{ order.datePlaced | date}}</p>
-    <h5 class="card-title">Items</h5>
+    <div class="text-left">
+      <h5>Order Info</h5>
+      <p>
+        <b>Order Id: </b>
+        {{ order.key }}
+      </p>
+      <p class="card-text">
+        <b>Order date: </b>
+        {{ order.datePlaced | date}}
+      </p>
+      <p class="card-text">
+        <b>Name: </b>
+        {{ order.shipping.name }}
+      </p>
+      <p class="card-text">
+        <b>Shipping address: </b>
+        {{ order.shipping.address + ', ' + order.shipping.zipCode + ', ' + order.shipping.city }}
+      </p>
+    </div>
+    <h5 class="card-title">Order Items</h5>
     <ul class="list-group list-group-flush">
       <li *ngFor="let item of order.items" class="list-group-item">
         {{ item.quantity }} x {{ item.product.title }}
@@ -17,9 +35,9 @@
       </li>
       <li class="list-group-item font-weight-bold">
         <div class="float-left">
-            Total 
+          Total
         </div>
-          {{ order.totalItemsCount }} pcs
+        {{ order.totalItemsCount }} pcs
         <div class="float-right">
           {{ order.totalPrice | currency:'EUR':'symbol':'0.2-2':'fi' }}
         </div>
@@ -29,4 +47,4 @@
 </div>
 <ng-template #spinner>
   <lw-spinner></lw-spinner>
-</ng-template>  
+</ng-template>

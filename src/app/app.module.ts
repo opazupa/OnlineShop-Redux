@@ -8,6 +8,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { registerLocaleData } from '@angular/common';
 import localeFi from '@angular/common/locales/fi';
+import { ToasterModule, ToasterContainerComponent } from 'angular2-toaster';
 
 import { AppComponent } from '@app/app.component';
 import { AppRoutingModule } from '@app/app-routing.module';
@@ -27,7 +28,8 @@ registerLocaleData(localeFi, 'fi');
     AngularFireModule.initializeApp(environment.fireBase),
     SharedModule,
     CoreModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ToasterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

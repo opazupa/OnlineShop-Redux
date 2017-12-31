@@ -1,3 +1,4 @@
+import { NotificationService } from './notification.service';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Product } from '@app/shared/models';
@@ -8,10 +9,11 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ProductService {
 
-  constructor(private db: AngularFireDatabase) { }
+  constructor(private db: AngularFireDatabase, private notificationService: NotificationService) { }
 
   create(product: Product) {
-    return this.db.list('/products').push(product);
+    return this.db.list('/products').push(product)
+      .then(() => this.notificationService.popSuccessToast('Product created'));
   }
 
   getAll(): Observable<Product[]> {
@@ -31,6 +33,8 @@ export class ProductService {
   }
 
   deleteProduct(productId: string) {
-    return this.db.object('/products/' + productId).remove();
+    return this.db.object('/products/' + productId).remove()
+      .then(() => this.notificationService.popSuccessToast('Product deleted'))
+      .catch(() => this.notificationService.popErrorToast('Product deletion failed'));
   }
 }

@@ -1,5 +1,6 @@
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit } from '@angular/core';
+import { NotificationService } from '@app/shared/services';
 
 @Component({
   selector: 'lw-home',
@@ -9,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor( config: NgbCarouselConfig) { 
+  constructor(config: NgbCarouselConfig, private toasterService: NotificationService) {
     config.interval = 7000;
     config.keyboard = false;
   }
@@ -17,4 +18,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
+  toast() {
+    this.toasterService.popErrorToast('Args Body');
+  }
 }

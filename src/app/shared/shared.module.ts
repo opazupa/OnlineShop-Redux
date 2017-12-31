@@ -17,6 +17,7 @@ import { ProductQuantityComponent } from './components/product-quantity/product-
 import { OrderService } from './services/order.service';
 import { OrderDetailComponent } from '@app/shared/components/order-detail/order-detail.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { NotificationService } from './services/notification.service';
 
 @NgModule({
   imports: [
@@ -42,6 +43,6 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     OrderDetailComponent
   ],
   declarations: [ErrorBoxComponent, SpinnerComponent, ProductCardComponent, ProductQuantityComponent, OrderDetailComponent],
-  providers: [AuthService, AuthGuard, UserService, CategoryService, ProductService, ShoppingCartService, OrderService]
+  providers: [AuthService, AuthGuard, UserService, CategoryService, ProductService, ShoppingCartService, OrderService, NotificationService]
 })
 export class SharedModule { }
