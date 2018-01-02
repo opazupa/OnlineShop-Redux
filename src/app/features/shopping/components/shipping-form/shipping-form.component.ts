@@ -5,27 +5,29 @@ import { Order, ShippingInformation, ShoppingCart } from '@app/shared/models';
 import { AuthService, OrderService } from '@app/shared/services';
 import { CustomValidators } from 'ng2-validation';
 import { Subscription } from 'rxjs/Subscription';
+import { FormComponent } from '@app/shared/components';
 
 @Component({
   selector: 'lw-shipping-form',
   templateUrl: './shipping-form.component.html',
   styleUrls: ['./shipping-form.component.scss']
 })
-export class ShippingFormComponent implements OnInit, OnDestroy {
+export class ShippingFormComponent extends FormComponent implements OnInit, OnDestroy {
 
   @Input('shopping-cart')
   cart: ShoppingCart;
-  shippingForm: FormGroup;
   subscription: Subscription;
   userId: string;
 
   constructor(private fb: FormBuilder,
     private auth: AuthService,
     private orderService: OrderService,
-    private router: Router) { }
+    private router: Router) {
+    super();
+  }
 
   ngOnInit() {
-    this.shippingForm = this.fb.group({
+    this.form = this.fb.group({
       name: ['', Validators.compose([Validators.required])],
       address: ['', Validators.compose([Validators.required, Validators.min(0)])],
       city: ['', Validators.required],
@@ -42,35 +44,12 @@ export class ShippingFormComponent implements OnInit, OnDestroy {
 
 
   async placeOrder() {
-    const order = new Order(this.userId, this.shippingForm.value as ShippingInformation, this.cart);
+    const order = new Order(this.userId, this.form.value as ShippingInformation, this.cart);
     console.log(order);
 
     const result = await this.orderService.placeOrder(order);
     this.router.navigate(['/shop/order-success/', result.key]);
   }
 
-  isFormUntouched(): boolean {
-    return this.shippingForm.pristine;
-  }
 
-  getFormControlValue(controlName: string) {
-    const control = this.shippingForm.get(controlName);
-
-    return control.value || '';
-  }
-
-  validateFormControl(controlName: string) {
-    const control = this.shippingForm.get(controlName);
-    return control.invalid && control.touched;
-  }
-
-  isFormEmpty(): Boolean {
-    let result = true;
-    Object.keys(this.shippingForm.controls).forEach(key => {
-      if (this.shippingForm.get(key).value !== undefined && !this.shippingForm.get(key).errors) {
-        result = false;
-      }
-    });
-    return result;
-  }
 }

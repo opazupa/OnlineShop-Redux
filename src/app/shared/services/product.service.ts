@@ -30,7 +30,8 @@ export class ProductService {
   }
 
   updateProduct(productId: string, product: Product): Observable<Product> {
-    this.db.object('/products/' + productId).update(product);
+    this.db.object('/products/' + productId).update(product)
+      .then(() => this.notificationService.popSuccessToast('Product updated'));
     return this.getProduct(productId);
   }
 

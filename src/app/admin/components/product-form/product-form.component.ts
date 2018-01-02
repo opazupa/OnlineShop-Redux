@@ -1,8 +1,9 @@
 import 'rxjs/add/operator/take';
 
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormComponent } from '@app/shared/components';
 import { Product } from '@app/shared/models';
 import { CategoryService, ProductService } from '@app/shared/services';
 import { CustomValidators } from 'ng2-validation';
@@ -13,11 +14,10 @@ import { Observable } from 'rxjs/Observable';
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.scss']
 })
-export class ProductFormComponent implements OnInit {
+export class ProductFormComponent extends FormComponent implements OnInit {
 
   categories$: Observable<any>;
   product: Product = {};
-  productForm: FormGroup;
   id: string;
 
   constructor(
@@ -27,6 +27,8 @@ export class ProductFormComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router) {
 
+    super();
+
     this.categories$ = categoryService.getAll();
     this.id = this.route.snapshot.paramMap.get('id');
     if (this.id) {
@@ -35,7 +37,7 @@ export class ProductFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.productForm = this.fb.group({
+    this.form = this.fb.group({
       title: ['', Validators.compose([Validators.required])],
       price: ['', Validators.compose([Validators.required, Validators.min(0), CustomValidators.number])],
       category: ['', Validators.required],
@@ -44,8 +46,7 @@ export class ProductFormComponent implements OnInit {
   }
 
   saveProduct(): void {
-    const product = this.productForm.value as Product;
-    // this.product
+    const product = this.form.value as Product;
 
     if (this.id) {
       this.productService.updateProduct(this.id, product);
@@ -60,31 +61,5 @@ export class ProductFormComponent implements OnInit {
       this.productService.deleteProduct(this.id);
       this.router.navigate(['/admin/products']);
     }
-  }
-
-  isFormUntouched(): boolean {
-    return this.productForm.pristine;
-  }
-
-  getFormControlValue(controlName: string) {
-    const control = this.productForm.get(controlName);
-
-    return control.value || '';
-  }
-
-
-  validateFormControl(controlName: string) {
-    const control = this.productForm.get(controlName);
-    return control.invalid && control.touched;
-  }
-
-  isFormEmpty(): Boolean {
-    let result = true;
-    Object.keys(this.productForm.controls).forEach(key => {
-      if (this.productForm.get(key).value !== undefined && !this.productForm.get(key).errors) {
-        result = false;
-      }
-    });
-    return result;
   }
 }

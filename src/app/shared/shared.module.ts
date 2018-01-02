@@ -19,6 +19,7 @@ import { OrderService } from './services/order.service';
 import { ProductService } from './services/product.service';
 import { ShoppingCartService } from './services/shopping-cart.service';
 import { UserService } from './services/user.service';
+import { FormComponent } from './components/forms/form/form.component';
 
 @NgModule({
   imports: [
@@ -48,7 +49,8 @@ import { UserService } from './services/user.service';
     SpinnerComponent,
     ProductCardComponent,
     ProductQuantityComponent,
-    OrderDetailComponent
+    OrderDetailComponent,
+    FormComponent
   ],
   providers: [
     AuthService,
