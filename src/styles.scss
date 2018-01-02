@@ -7,18 +7,20 @@
 @import 'node_modules/angular2-toaster/toaster';
 @import "../node_modules/bootstrap/scss/bootstrap";
 @import url("https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900");
+
 $fa-font-path: "../node_modules/font-awesome/fonts";
 $primary-color: orange;
-$primary-color-disabled: rgb(253,198,95);
+$primary-color-disabled: #fdc65f;
 $primary-color-hover: #f58d06;
 $secondary-color: #808080;
 $secondary-color-hover: $primary-color;
 $primary-font-family: 'Raleway';
+
 * {
   font-family: $primary-font-family;
 }
 
-html {
+html  { 
   position: relative;
   min-height: 100%;
 }
