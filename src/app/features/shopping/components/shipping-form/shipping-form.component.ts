@@ -1,11 +1,11 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FormComponent } from '@app/shared/components';
 import { Order, ShippingInformation, ShoppingCart } from '@app/shared/models';
 import { AuthService, OrderService } from '@app/shared/services';
 import { CustomValidators } from 'ng2-validation';
 import { Subscription } from 'rxjs/Subscription';
-import { FormComponent } from '@app/shared/components';
 
 @Component({
   selector: 'lw-shipping-form',
