@@ -1,5 +1,10 @@
 <div class="row">
   <div class="col-md-6">
+    <div class="text-left">
+      <button class=" btn btn-outline-dark " (click)="return() ">
+        <i class="fa fa-arrow-left "></i> Return
+      </button>
+    </div>
     <form [formGroup]="form" (ngSubmit)="saveProduct()">
       <div class="form-group">
         <label for="title">Title</label>

@@ -1,44 +1,45 @@
-<div class="text-left">
-  <button class="btn btn-outline-dark" (click)="return()">
-    <i class="fa fa-arrow-left"></i> Return</button>
+<div class="text-left" *ngIf="!hideReturn">
+  <button class=" btn btn-outline-dark " (click)="return() ">
+    <i class="fa fa-arrow-left "></i> Return</button>
 </div>
-<div class="card" *ngIf="order$ | async as order; else spinner">
-  <div class="card-body">
-    <h4 class="card-title">Order Summary</h4>
-    <div class="text-left">
+<div class="card " *ngIf="order$ | async as order; else spinner ">
+  <div class="card-body ">
+    <h4 class="card-title ">Order Summary</h4>
+    <div class="text-left ">
       <h5>Order Info</h5>
       <p>
         <b>Order Id: </b>
         {{ order.key }}
       </p>
-      <p class="card-text">
+      <p class="card-text ">
         <b>Order date: </b>
         {{ order.datePlaced | date}}
       </p>
-      <p class="card-text">
+      <p class="card-text ">
         <b>Name: </b>
         {{ order.shipping.name }}
       </p>
-      <p class="card-text">
+      <p class="card-text ">
         <b>Shipping address: </b>
         {{ order.shipping.address + ', ' + order.shipping.zipCode + ', ' + order.shipping.city }}
       </p>
     </div>
+    <br>
     <h5 class="card-title">Order Items</h5>
-    <ul class="list-group list-group-flush">
-      <li *ngFor="let item of order.items" class="list-group-item">
+    <ul class="list-group list-group-flush ">
+      <li *ngFor="let item of order.items " class="list-group-item ">
         {{ item.quantity }} x {{ item.product.title }}
-        <div class="float-left thumbnail" [style.backgroundImage]="'url(' + item.product.imageUrl + ')'"></div>
-        <div class="float-right">
+        <div class="float-left thumbnail " [style.backgroundImage]=" 'url(' + item.product.imageUrl + ')' "></div>
+        <div class="float-right ">
           {{ item.totalPrice | currency:'EUR':'symbol':'0.2-2':'fi' }}
         </div>
       </li>
-      <li class="list-group-item font-weight-bold">
-        <div class="float-left">
+      <li class="list-group-item font-weight-bold ">
+        <div class="float-left ">
           Total
         </div>
         {{ order.totalItemsCount }} pcs
-        <div class="float-right">
+        <div class="float-right ">
           {{ order.totalPrice | currency:'EUR':'symbol':'0.2-2':'fi' }}
         </div>
       </li>

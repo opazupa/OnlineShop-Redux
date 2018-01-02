@@ -1,11 +1,11 @@
-import { AppUser } from './../../../shared/models/user.model';
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
-import { AuthService, ShoppingCartService } from '@app/shared/services';
 import { ShoppingCart } from '@app/shared/models';
+import { AuthService, ShoppingCartService } from '@app/shared/services';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Observable } from 'rxjs/Observable';
+
 import { LoginModalComponent } from '../login/login-modal/login-modal.component';
+import { AppUser } from './../../../shared/models/user.model';
 
 @Component({
   selector: 'lw-navigation',
@@ -22,7 +22,7 @@ export class NavigationComponent implements OnInit {
     private auth: AuthService,
     private cartService: ShoppingCartService,
     private modalService: NgbModal
-    ) {
+  ) {
 
   }
 
@@ -32,7 +32,7 @@ export class NavigationComponent implements OnInit {
   }
 
   close() {
-    this.showCollapsedMenu = false;
+    setTimeout(() => this.toggleCollapse(), 350);
   }
 
   toggleCollapse() {

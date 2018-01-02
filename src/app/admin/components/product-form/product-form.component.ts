@@ -1,5 +1,6 @@
 import 'rxjs/add/operator/take';
 
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -25,7 +26,8 @@ export class ProductFormComponent extends FormComponent implements OnInit {
     private categoryService: CategoryService,
     private productService: ProductService,
     private route: ActivatedRoute,
-    private router: Router) {
+    private router: Router,
+    private location: Location) {
 
     super();
 
@@ -61,5 +63,9 @@ export class ProductFormComponent extends FormComponent implements OnInit {
       this.productService.deleteProduct(this.id);
       this.router.navigate(['/admin/products']);
     }
+  }
+
+  return(): void {
+    this.location.back();
   }
 }

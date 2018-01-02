@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
@@ -13,6 +13,8 @@ import { Order } from './../../models/order.model';
 })
 export class OrderDetailComponent implements OnInit {
 
+  @Input('hide-return')
+  hideReturn: boolean;
   orderId: string;
   order$: Observable<Order>;
 
@@ -22,7 +24,6 @@ export class OrderDetailComponent implements OnInit {
 
   ngOnInit() {
     this.order$ = this.orderService.getOrderById(this.orderId);
-    this.order$.subscribe(x => console.log(x));
   }
 
   return(): void {

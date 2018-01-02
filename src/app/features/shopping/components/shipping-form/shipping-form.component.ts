@@ -45,7 +45,6 @@ export class ShippingFormComponent extends FormComponent implements OnInit, OnDe
 
   async placeOrder() {
     const order = new Order(this.userId, this.form.value as ShippingInformation, this.cart);
-    console.log(order);
 
     const result = await this.orderService.placeOrder(order);
     this.router.navigate(['/shop/order-success/', result.key]);
