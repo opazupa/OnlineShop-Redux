@@ -1,5 +1,5 @@
 <h1>Shopping cart</h1>
-<ng-container *ngIf="cart$ | async as cart">
+<ng-container *ngIf="cart$ | async as cart; else spinner">
   <p>
     You have {{ cart.totalItemsCount }} items in your shopping cart.
     <button (click)="clearCart()" class="btn btn-outline-dark btn-sm">
@@ -46,3 +46,6 @@
     Checkout
   </a>
 </ng-container>
+<ng-template #spinner>
+  <lw-spinner></lw-spinner>
+</ng-template>

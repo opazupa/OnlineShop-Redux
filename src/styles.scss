@@ -42,6 +42,7 @@ h3 {
 .badge-pill {
   background-color: $footer-color;
   border-color: $footer-color;
+  color: $highlight-color!important;
 }
 
 .navbar {
@@ -135,6 +136,7 @@ h3 {
 
 .active-route {
   color: $footer-color!important;
+
 }
 
 .footer {
