@@ -39,6 +39,11 @@ h3 {
   margin-bottom: 1.5rem;
 }
 
+.badge-pill {
+  background-color: $footer-color;
+  border-color: $footer-color;
+}
+
 .navbar {
   border-bottom: 3px solid $footer-color;
   background-color: $primary-color;
