@@ -19,6 +19,7 @@ const slideUp = [
 export const routerTransition = trigger('routerTransition', [
   transition(':enter', []),
   transition('* => home', slideUp),
-  transition('* => shop', slideUp)
+  transition('* => offers', slideUp),
+  transition('* => shopping-cart', slideUp)
 ]);
 
