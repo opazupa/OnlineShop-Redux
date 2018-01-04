@@ -1,6 +1,6 @@
 <lw-navigation></lw-navigation>
-<div class="container outlet">
-  <router-outlet></router-outlet>
+<div class="container outlet" [@routerTransition]="getState(o)">
+  <router-outlet #o="outlet"></router-outlet>
 </div>
 <lw-footer></lw-footer>
 <toaster-container [toasterconfig]="toasterconfig"></toaster-container>

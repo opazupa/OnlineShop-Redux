@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
-import { AuthService, UserService } from '@app/shared/services';
 import { Router } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
+import { routerTransition } from '@app/shared/animations';
+import { AuthService, UserService } from '@app/shared/services';
 import { ToasterConfig } from 'angular2-toaster';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  animations: [routerTransition]
 })
 export class AppComponent {
 
@@ -31,4 +34,9 @@ export class AppComponent {
       timeout: 2000,
       positionClass: 'toast-bottom-center'
     });
+
+  getState(outlet: RouterOutlet) {
+    const state = outlet.activatedRouteData.animation ? outlet.activatedRouteData.animation : null;
+    return state;
+  }
 }

@@ -22,6 +22,10 @@ $primary-font-family: 'Raleway';
   font-family: $primary-font-family;
 }
 
+::-webkit-scrollbar {
+  display: none;
+  }
+
 html  { 
   position: relative;
   min-height: 100%;
