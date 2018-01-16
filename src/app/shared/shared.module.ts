@@ -29,7 +29,8 @@ import { UserService } from './services/user.service';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     NgbModule.forRoot(),
-    NgxDatatableModule
+    NgxDatatableModule,
+
   ],
   exports: [
     CommonModule,

@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
 import { OrderService } from '../../services/order.service';
@@ -17,13 +18,15 @@ export class OrderDetailComponent implements OnInit {
   hideReturn: boolean;
   orderId: string;
   order$: Observable<Order>;
+  isLoading$: Observable<Boolean>;
 
-  constructor(private orderService: OrderService, private route: ActivatedRoute, private location: Location) {
+  constructor(private store: Store<any>, private orderService: OrderService, private route: ActivatedRoute, private location: Location) {
     this.orderId = this.route.snapshot.params.orderId;
   }
 
   ngOnInit() {
-    this.order$ = this.orderService.getOrderById(this.orderId);
+    this.order$ = this.store.select('shopping', 'orders', 'orderDetail');
+    this.isLoading$ = this.store.select('shopping', 'orders', 'isLoading');
   }
 
   return(): void {
