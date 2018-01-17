@@ -28,17 +28,13 @@ export class AuthService {
   login() {
     const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
     localStorage.setItem('returnUrl', returnUrl);
-    this.afAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());
-    this.afAuth.auth.getRedirectResult()
-      .then(() => this.notificationService.popSuccessToast('Login successful'))
-      .catch(() => this.notificationService.popErrorToast('Error occurred in login'));
+    return Observable.fromPromise(this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()));
   }
 
   logout() {
-    this.afAuth.auth.signOut()
-      .then(() => this.notificationService.popSuccessToast('Logout successful'))
-      .catch(() => this.notificationService.popErrorToast('Error occurred in logout'));
-    this.router.navigate(['/']);
+    return Observable.fromPromise(this.afAuth.auth.signOut()
+      .then(() => this.router.navigate(['/'])));
+
   }
 
   get appUser$(): Observable<AppUser> {

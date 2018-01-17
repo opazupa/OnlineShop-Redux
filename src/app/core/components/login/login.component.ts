@@ -1,33 +1,39 @@
-import { Component } from '@angular/core';
-import { easeInOutAnimation } from '@app/shared/animations';
+import { Component, Input } from '@angular/core';
 import { AppUser } from '@app/shared/models';
-import { AuthService } from '@app/shared/services';
+import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
+
+import { LOGIN, LOGOUT } from '../../core.actions';
 
 @Component({
   selector: 'lw-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  // make fade in animation available to this component
-  animations: [easeInOutAnimation],
-
-  // attach the fade in animation to the host (root) element of this component
-  // tslint:disable-next-line:use-host-property-decorator
-  host: { '[@easeInOut]': '' }
 })
 export class LoginComponent {
 
+  @Input('modal')
+  modalRef: NgbModalRef;
+
   appUser$: Observable<AppUser>;
 
-  constructor(private auth: AuthService) {
-    this.appUser$ = this.auth.appUser$;
+  constructor(private store: Store<any>) {
+    this.appUser$ = this.store.select('core', 'user');
   }
 
   login() {
-    this.auth.login();
+    this.store.dispatch(LOGIN());
+    this.closeLoginModal();
   }
 
   logout() {
-    this.auth.logout();
+    this.store.dispatch(LOGOUT());
+  }
+
+  private closeLoginModal() {
+    if (this.modalRef) {
+      this.modalRef.dismiss();
+    }
   }
 }

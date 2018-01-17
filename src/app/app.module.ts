@@ -15,13 +15,14 @@ import { ToasterModule } from 'angular2-toaster';
 import { AngularFireModule } from 'angularfire2';
 import { localStorageSync } from 'ngrx-store-localstorage';
 
-import authReducer from './features/shopping/reducers';
+import { CoreEffects } from './core/core.effects';
+import coreReducer from './core/core.reducers';
 
 registerLocaleData(localeFi, 'fi');
 
 // Sync states with localstorage and rehydrate on startup
 export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
-  return localStorageSync({ keys: ['root', 'shopping', 'admin'], rehydrate: true })(reducer);
+  return localStorageSync({ keys: ['core', 'shopping', 'admin'], rehydrate: true })(reducer);
 }
 const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
 
@@ -37,9 +38,9 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
     CoreModule,
     AppRoutingModule,
     ToasterModule,
-    StoreModule.forRoot({ root: authReducer }, { metaReducers }),
+    StoreModule.forRoot({ core: coreReducer }, { metaReducers }),
     StoreDevtoolsModule.instrument(),
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot([CoreEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

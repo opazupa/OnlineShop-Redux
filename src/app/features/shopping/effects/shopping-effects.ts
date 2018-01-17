@@ -10,6 +10,8 @@ import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 
+import { REQUEST_ORDERS_FAILED, REQUEST_ORDERS_SUCCESS } from '../actions';
+
 
 @Injectable()
 export class ShoppingEffects {
@@ -18,9 +20,9 @@ export class ShoppingEffects {
     .mergeMap((action: CustomAction) =>
       this.orderService.getOrderById(action.payload.key)
         // If successful, dispatch success action with result
-        .map(data => ({ type: 'REQUEST_ORDERS_SUCCESS', payload: data }))
+        .map(data => REQUEST_ORDERS_SUCCESS(data))
         // If request fails, dispatch failed action
-        .catch(() => of({ type: 'REQUEST_ORDERS_FAILED' }))
+        .catch(() => of(REQUEST_ORDERS_FAILED()))
     );
 
   constructor(

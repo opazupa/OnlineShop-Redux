@@ -1,16 +1,11 @@
 <div>
-    <button 
-    *ngIf="appUser$ | async as user; else loginUser"
-      (click)="logout()"
-      class="btn btn-danger">
-      Logout
+  <button *ngIf="appUser$ | async as user; else loginUser" (click)="logout()" class="btn btn-danger">
+    Logout
   </button>
 </div>
 <ng-template #loginUser>
-    <button 
-    (click)="login()"
-    class="btn btn-primary">
-    <i class="fa fa-google"></i> 
+  <button (click)="login()" class="btn btn-primary">
+    <i class="fa fa-google"></i>
     Login with google
   </button>
 </ng-template>

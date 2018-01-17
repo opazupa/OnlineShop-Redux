@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { LOGOUT } from '@app/core/core.actions';
 import { ShoppingCart } from '@app/shared/models';
-import { AuthService, ShoppingCartService } from '@app/shared/services';
+import { ShoppingCartService } from '@app/shared/services';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
 import { LoginModalComponent } from '../login/login-modal/login-modal.component';
@@ -19,15 +21,15 @@ export class NavigationComponent implements OnInit {
   cart$: Observable<ShoppingCart>;
 
   constructor(
-    private auth: AuthService,
     private cartService: ShoppingCartService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private store: Store<any>
   ) {
 
   }
 
   async ngOnInit() {
-    this.appUser$ = this.auth.appUser$;
+    this.appUser$ = this.store.select('core', 'user');
     this.cart$ = await this.cartService.getCart();
   }
 
@@ -40,7 +42,7 @@ export class NavigationComponent implements OnInit {
   }
 
   logout() {
-    this.auth.logout();
+    this.store.dispatch(LOGOUT());
     this.close();
   }
 
