@@ -13,6 +13,7 @@ import { ActionReducer, MetaReducer, StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ToasterModule } from 'angular2-toaster';
 import { AngularFireModule } from 'angularfire2';
+import { storeFreeze } from 'ngrx-store-freeze';
 import { localStorageSync } from 'ngrx-store-localstorage';
 
 import { CoreEffects } from './core/core.effects';
@@ -24,7 +25,8 @@ registerLocaleData(localeFi, 'fi');
 export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
   return localStorageSync({ keys: ['core', 'shopping', 'admin'], rehydrate: true })(reducer);
 }
-const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
+const metaReducers: Array<MetaReducer<any, any>> = !environment.production ?
+ [localStorageSyncReducer, storeFreeze] : [localStorageSyncReducer];
 
 @NgModule({
   declarations: [

@@ -14,8 +14,7 @@ export class ProductService {
   constructor(private db: AngularFireDatabase, private notificationService: NotificationService) { }
 
   create(product: Product) {
-    return this.db.list('/products').push(product)
-      .then(() => this.notificationService.popSuccessToast('Product created'));
+    return Observable.fromPromise(this.db.list('/products').push(product));
   }
 
   getAll(): Observable<Product[]> {
@@ -30,14 +29,11 @@ export class ProductService {
   }
 
   updateProduct(productId: string, product: Product): Observable<Product> {
-    this.db.object('/products/' + productId).update(product)
-      .then(() => this.notificationService.popSuccessToast('Product updated'));
+    this.db.object('/products/' + productId).update(product);
     return this.getProduct(productId);
   }
 
   deleteProduct(productId: string) {
-    return this.db.object('/products/' + productId).remove()
-      .then(() => this.notificationService.popSuccessToast('Product deleted'))
-      .catch(() => this.notificationService.popErrorToast('Product deletion failed'));
+    return Observable.fromPromise(this.db.object('/products/' + productId).remove());
   }
 }

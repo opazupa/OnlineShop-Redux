@@ -13,7 +13,20 @@ const userReducer = handleActions({
   NOT_AUTHENTICATED: (state, action) => null
 }, null);
 
+export const orderDetailReducer = handleActions({
+  REQUEST_ORDER_DETAIL_SUCCESS: (state, action) => action.payload,
+  REQUEST_ORDERS_DETAIL_FAILED: (state, action) => null
+}, null);
+
+export const loadingReducer = handleActions({
+  REQUEST_ORDER_DATAIL: (state, action) => true,
+  REQUEST_ORDER_DETAIL_SUCCESS: (state, action) => false,
+  REQUEST_ORDER_DETAIL_FAILED: (state, action) => false
+}, false);
+
 export default combineReducers({
   auth: authReducer,
-  user: userReducer
+  user: userReducer,
+  orderDetail: orderDetailReducer,
+  isLoading: loadingReducer
 });

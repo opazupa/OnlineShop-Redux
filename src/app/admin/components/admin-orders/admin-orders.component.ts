@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { REQUEST_ADMIN_ORDERS } from '@app/admin/admin.actions';
+import { REQUEST_ORDER_DETAIL } from '@app/features/shopping/actions';
 import { Order } from '@app/shared/models';
-import { OrderService } from '@app/shared/services';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -9,15 +11,22 @@ import { Observable } from 'rxjs/Observable';
   templateUrl: './admin-orders.component.html',
   styleUrls: ['./admin-orders.component.scss']
 })
-export class AdminOrdersComponent {
+export class AdminOrdersComponent implements OnInit {
 
   orders$: Observable<Order[]>;
+  isLoading$: Observable<Boolean>;
 
-  constructor(private orderService: OrderService, private router: Router) {
-    this.orders$ = this.orderService.getOrders();
+  constructor(private store: Store<any>, private router: Router) {
+    this.orders$ = this.store.select('admin', 'orders');
+    this.isLoading$ = this.store.select('admin', 'isLoading');
+  }
+
+  ngOnInit() {
+    this.store.dispatch(REQUEST_ADMIN_ORDERS());
   }
 
   viewOrder(order: Order) {
+    this.store.dispatch(REQUEST_ORDER_DETAIL(order.key));
     this.router.navigate([`/admin/orders/${order.key}`]);
   }
 }

@@ -9,7 +9,7 @@ import { AdminOrdersComponent } from './components/admin-orders/admin-orders.com
 import { AdminProductsComponent } from './components/admin-products/admin-products.component';
 import { ProductFormComponent } from './components/product-form/product-form.component';
 import { AdminEffects } from './effects';
-import reducers from './reducers';
+import reducers from './reducers/admin.reducer';
 import { AdminAuthGuard } from './services/admin-auth-guard.service';
 
 @NgModule({

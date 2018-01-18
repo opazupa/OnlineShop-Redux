@@ -25,8 +25,8 @@ export class OrderDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.order$ = this.store.select('shopping', 'orders', 'orderDetail');
-    this.isLoading$ = this.store.select('shopping', 'orders', 'isLoading');
+    this.order$ = this.store.select('core', 'orderDetail');
+    this.isLoading$ = this.store.select('core', 'isLoading');
   }
 
   return(): void {

@@ -13,11 +13,11 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 
 import {
+  AUTHENTICATED,
   GET_USER,
   GET_USER_FAILED,
   GET_USER_SUCCESS,
   LOGIN_FAILED,
-  LOGIN_SUCCESS,
   LOGOUT_FAILED,
   NOT_AUTHENTICATED,
 } from './core.actions';
@@ -30,7 +30,7 @@ export class CoreEffects {
     .mergeMap((action: CustomAction) =>
       this.auth.login()
         // If successful, dispatch success action with result
-        .mergeMap(() => Observable.of(LOGIN_SUCCESS(), GET_USER()))
+        .mergeMap(() => Observable.of(AUTHENTICATED(), GET_USER()))
         // If request fails, dispatch failed action
         .catch(() => of(LOGIN_FAILED()))
     );
@@ -54,6 +54,8 @@ export class CoreEffects {
         // If GrequestET fails, dispatch failed action
         .catch(() => of(GET_USER_FAILED()))
     );
+
+  //CATEGORIES!! TODO
   constructor(
     private userService: UserService,
     private auth: AuthService,

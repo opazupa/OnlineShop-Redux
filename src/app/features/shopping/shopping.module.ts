@@ -2,8 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@app/shared';
 import { EffectsModule } from '@ngrx/effects';
-import { ActionReducer, MetaReducer, StoreModule } from '@ngrx/store';
-import { localStorageSync } from 'ngrx-store-localstorage';
+import { StoreModule } from '@ngrx/store';
 
 import { CheckOutComponent } from './components/check-out/check-out.component';
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
@@ -15,7 +14,7 @@ import { ShippingFormComponent } from './components/shipping-form/shipping-form.
 import { ShoppingCartSummaryComponent } from './components/shopping-cart-summary/shopping-cart-summary.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { ShoppingEffects } from './effects';
-import reducers from './reducers';
+import reducers, { INITIAL_STATE } from './reducers';
 import { ShoppingRoutingModule } from './shopping-routing.module';
 
 
@@ -25,7 +24,7 @@ import { ShoppingRoutingModule } from './shopping-routing.module';
     CommonModule,
     ShoppingRoutingModule,
     SharedModule,
-    StoreModule.forFeature('shopping', reducers, { }),
+    StoreModule.forFeature('shopping', reducers, { initialState: INITIAL_STATE }),
     EffectsModule.forFeature([ShoppingEffects])
   ],
   declarations: [
