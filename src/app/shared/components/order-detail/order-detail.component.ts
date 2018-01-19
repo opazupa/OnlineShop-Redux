@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { REQUEST_ORDER_DETAIL } from '@app/features/shopping/shopping.actions';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
@@ -22,6 +23,7 @@ export class OrderDetailComponent implements OnInit {
 
   constructor(private store: Store<any>, private orderService: OrderService, private route: ActivatedRoute, private location: Location) {
     this.orderId = this.route.snapshot.params.orderId;
+    this.store.dispatch(REQUEST_ORDER_DETAIL(this.orderId));
   }
 
   ngOnInit() {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ShoppingCart } from '@app/shared/models';
-import { NotificationService, ShoppingCartService } from '@app/shared/services';
+import { ShoppingCartService } from '@app/shared/services';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -12,15 +12,13 @@ export class ShoppingCartComponent implements OnInit {
 
   cart$: Observable<ShoppingCart>;
 
-  constructor(private cartService: ShoppingCartService, private notificationService: NotificationService) { }
+  constructor(private cartService: ShoppingCartService) { }
 
   async ngOnInit() {
     this.cart$ = await this.cartService.getCart();
   }
 
   clearCart(): void {
-    this.cartService.clearCart()
-      .then(() => this.notificationService.popSuccessToast('Shopping cart cleared'))
-      .catch(() => this.notificationService.popErrorToast('Shopping cart failed to be cleared'));
+    this.cartService.clearCart();
   }
 }

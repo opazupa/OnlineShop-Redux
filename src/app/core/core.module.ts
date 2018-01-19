@@ -9,6 +9,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginModalComponent } from './components/login/login-modal/login-modal.component';
 import { LoginComponent } from './components/login/login.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
+import { NotificationService } from './services/notification.service';
 
 
 @NgModule({
@@ -26,7 +27,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
     AnimatedToggleComponent,
     LoginModalComponent
   ],
-  providers: [],
+  providers: [NotificationService],
   entryComponents: [LoginModalComponent]
 })
 export class CoreModule { }

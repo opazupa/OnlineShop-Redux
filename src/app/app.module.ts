@@ -9,24 +9,16 @@ import { CoreModule } from '@app/core';
 import { SharedModule } from '@app/shared';
 import { environment } from '@env/environment';
 import { EffectsModule } from '@ngrx/effects';
-import { ActionReducer, MetaReducer, StoreModule } from '@ngrx/store';
+import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { ToasterModule } from 'angular2-toaster';
 import { AngularFireModule } from 'angularfire2';
-import { storeFreeze } from 'ngrx-store-freeze';
-import { localStorageSync } from 'ngrx-store-localstorage';
+import { ToastrModule } from 'ngx-toastr';
 
 import { CoreEffects } from './core/core.effects';
-import coreReducer from './core/core.reducers';
+import coreReducer from './core/reducers/core.reducers';
+import { metaReducers } from './store';
 
 registerLocaleData(localeFi, 'fi');
-
-// Sync states with localstorage and rehydrate on startup
-export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
-  return localStorageSync({ keys: ['core', 'shopping', 'admin'], rehydrate: true })(reducer);
-}
-const metaReducers: Array<MetaReducer<any, any>> = !environment.production ?
- [localStorageSyncReducer, storeFreeze] : [localStorageSyncReducer];
 
 @NgModule({
   declarations: [
@@ -39,7 +31,7 @@ const metaReducers: Array<MetaReducer<any, any>> = !environment.production ?
     SharedModule,
     CoreModule,
     AppRoutingModule,
-    ToasterModule,
+    ToastrModule.forRoot(),
     StoreModule.forRoot({ core: coreReducer }, { metaReducers }),
     StoreDevtoolsModule.instrument(),
     EffectsModule.forRoot([CoreEffects])

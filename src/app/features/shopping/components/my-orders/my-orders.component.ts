@@ -2,7 +2,7 @@ import 'rxjs/add/operator/switchMap';
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { REQUEST_ORDER_DETAIL, REQUEST_ORDERS } from '@app/features/shopping/actions';
+import { REQUEST_ORDERS } from '@app/features/shopping/shopping.actions';
 import { Order } from '@app/shared/models';
 import { AuthService, OrderService } from '@app/shared/services';
 import { Store } from '@ngrx/store';
@@ -30,7 +30,6 @@ export class MyOrdersComponent implements OnInit {
   }
 
   viewOrder(order: Order) {
-    this.store.dispatch(REQUEST_ORDER_DETAIL(order.key));
     this.router.navigate([`/shop/my-orders/${order.key}`]);
   }
 }

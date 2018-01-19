@@ -1,5 +1,6 @@
 import { combineReducers } from '@ngrx/store';
 import { handleActions } from 'redux-actions';
+import { notificationsReducer } from './notifications.reducer';
 
 const authReducer = handleActions({
   AUTHENTICATED: (state, action) => true,
@@ -28,5 +29,6 @@ export default combineReducers({
   auth: authReducer,
   user: userReducer,
   orderDetail: orderDetailReducer,
-  isLoading: loadingReducer
+  isLoading: loadingReducer,
+  notifications: notificationsReducer
 });

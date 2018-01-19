@@ -1,1 +1,1 @@
-export * from './admin-effects';
+export * from './admin.effects';

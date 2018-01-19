@@ -1,7 +1,7 @@
 import { combineReducers } from '@ngrx/store';
 import { combineActions, handleActions } from 'redux-actions';
 
-import { REQUEST_ORDERS, REQUEST_ORDERS_FAILED, REQUEST_ORDERS_SUCCESS } from '../actions';
+import { REQUEST_ORDERS, REQUEST_ORDERS_FAILED, REQUEST_ORDERS_SUCCESS } from '../shopping.actions';
 
 export const ordersReducer = handleActions({
   REQUEST_ORDERS_SUCCESS: (state, action) => action.payload,

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { NotificationService } from '@app/shared/services';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -10,7 +9,7 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 })
 export class HomeComponent {
 
-  constructor(config: NgbCarouselConfig, private toasterService: NotificationService) {
+  constructor(config: NgbCarouselConfig) {
     config.interval = 7000;
     config.keyboard = false;
   }

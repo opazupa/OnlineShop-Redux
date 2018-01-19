@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { REQUEST_ADMIN_ORDERS } from '@app/admin/admin.actions';
-import { REQUEST_ORDER_DETAIL } from '@app/features/shopping/actions';
 import { Order } from '@app/shared/models';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
@@ -26,7 +25,6 @@ export class AdminOrdersComponent implements OnInit {
   }
 
   viewOrder(order: Order) {
-    this.store.dispatch(REQUEST_ORDER_DETAIL(order.key));
     this.router.navigate([`/admin/orders/${order.key}`]);
   }
 }

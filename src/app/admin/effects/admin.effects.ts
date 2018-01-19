@@ -84,10 +84,10 @@ export class AdminEffects {
     .mergeMap((action: CustomAction) =>
       this.productService.updateProduct(action.payload.id, action.payload.product)
         // If successful, dispatch success action with result
-        .mergeMap(data => Observable.of(UPDATE_PRODUCT_SUCCESS(data)))
-        // If request fails, dispatch failed action
-        .catch(() => of(UPDATE_PRODUCT_FAILED())
-        );
+        .map(data => UPDATE_PRODUCT_SUCCESS(data)))
+    // If request fails, dispatch failed action
+    .catch(() => of(UPDATE_PRODUCT_FAILED())
+    );
 
   constructor(
     private orderService: OrderService,

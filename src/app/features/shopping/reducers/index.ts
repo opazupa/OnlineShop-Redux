@@ -1,11 +1,13 @@
 import { combineReducers } from '@ngrx/store/src/utils';
 
+import { categoryReducer } from './category.reducer';
 import { orderReducer } from './order.reducer';
-
-export const INITIAL_STATE = {
-  orders: {}
-};
+import { shopReducer } from './shop.reducer';
+import { shoppingCartReducer } from './shopping-cart.reducer';
 
 export default combineReducers({
-  orders: orderReducer
+  shop: shopReducer,
+  orders: orderReducer,
+  categories: categoryReducer,
+  shoppingCart: shoppingCartReducer
 });

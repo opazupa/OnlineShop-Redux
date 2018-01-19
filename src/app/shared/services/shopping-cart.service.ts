@@ -6,12 +6,10 @@ import { Product, ShoppingCart } from '@app/shared/models';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 
-import { NotificationService } from './notification.service';
-
 @Injectable()
 export class ShoppingCartService {
 
-  constructor(private db: AngularFireDatabase, private notificationService: NotificationService) { }
+  constructor(private db: AngularFireDatabase) { }
 
   async getCart(): Promise<Observable<ShoppingCart>> {
     const cartId = await this.getOrCreateCartId();
@@ -62,7 +60,6 @@ export class ShoppingCartService {
 
       if (quantity === 0) {
         item$.remove();
-        
       } else {
 
         item$.update({

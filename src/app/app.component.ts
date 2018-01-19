@@ -4,6 +4,7 @@ import { RouterOutlet } from '@angular/router';
 import { routerTransition } from '@app/shared/animations';
 import { AuthService, UserService } from '@app/shared/services';
 import { ToasterConfig } from 'angular2-toaster';
+import { NotificationService } from '@app/core/services/notification.service';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,10 @@ import { ToasterConfig } from 'angular2-toaster';
 })
 export class AppComponent {
 
-  constructor(private userService: UserService, private auth: AuthService, private router: Router) {
+  constructor(private userService: UserService,
+    private auth: AuthService,
+    private router: Router,
+    private notificationService: NotificationService) {
     auth.user$.subscribe(user => {
       if (user) {
         this.userService.save(user);
@@ -26,14 +30,6 @@ export class AppComponent {
       }
     });
   }
-
-  public toasterconfig: ToasterConfig =
-    new ToasterConfig({
-      showCloseButton: false,
-      tapToDismiss: true,
-      timeout: 2000,
-      positionClass: 'toast-bottom-center'
-    });
 
   getState(outlet: RouterOutlet) {
     const state = outlet.activatedRouteData.animation ? outlet.activatedRouteData.animation : null;

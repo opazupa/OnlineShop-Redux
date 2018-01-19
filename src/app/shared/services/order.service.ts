@@ -5,7 +5,6 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 
 import { Order } from '../models';
-import { NotificationService } from './notification.service';
 import { ShoppingCartService } from './shopping-cart.service';
 
 @Injectable()
@@ -13,16 +12,11 @@ export class OrderService {
 
   constructor(
     private db: AngularFireDatabase,
-    private cartService: ShoppingCartService,
-    private notificationService: NotificationService) { }
+    private cartService: ShoppingCartService) { }
 
 
   async placeOrder(order: Order) {
-    const result = await this.db.list('/orders/').push(order)
-      .then((r) => {
-        this.notificationService.popSuccessToast('Order placed successfully');
-        return r;
-      });
+    const result = await this.db.list('/orders/').push(order);
     this.cartService.clearCart();
     return result;
   }

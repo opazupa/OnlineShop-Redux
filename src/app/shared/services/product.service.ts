@@ -6,12 +6,10 @@ import { Product } from '@app/shared/models';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 
-import { NotificationService } from './notification.service';
-
 @Injectable()
 export class ProductService {
 
-  constructor(private db: AngularFireDatabase, private notificationService: NotificationService) { }
+  constructor(private db: AngularFireDatabase) { }
 
   create(product: Product) {
     return Observable.fromPromise(this.db.list('/products').push(product));

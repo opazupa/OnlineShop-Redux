@@ -15,7 +15,7 @@ import {
   REQUEST_ORDER_DETAIL_SUCCESS,
   REQUEST_ORDERS_FAILED,
   REQUEST_ORDERS_SUCCESS,
-} from './../actions';
+} from './../shopping.actions';
 
 
 @Injectable()

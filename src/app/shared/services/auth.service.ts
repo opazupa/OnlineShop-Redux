@@ -8,7 +8,6 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
 import { Observable } from 'rxjs/Observable';
 
-import { NotificationService } from './notification.service';
 import { UserService } from './user.service';
 
 @Injectable()
@@ -20,8 +19,7 @@ export class AuthService {
     private afAuth: AngularFireAuth,
     private route: ActivatedRoute,
     private router: Router,
-    private userService: UserService,
-    private notificationService: NotificationService) {
+    private userService: UserService) {
     this.user$ = afAuth.authState;
   }
 
