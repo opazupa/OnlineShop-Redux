@@ -4,15 +4,16 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DELETE_PRODUCT } from '@app/admin/admin.actions';
+import { ModalService } from '@app/core/services/modal.service';
+import { REQUEST_CATEGORIES } from '@app/features/shopping/shopping.actions';
 import { FormComponent } from '@app/shared/components';
 import { Product } from '@app/shared/models';
-import { CategoryService, ProductService } from '@app/shared/services';
+import { ProductService } from '@app/shared/services';
 import { Store } from '@ngrx/store';
 import { CustomValidators } from 'ng2-validation';
 import { Observable } from 'rxjs/Observable';
 
-import { CREATE_PRODUCT, UPDATE_PRODUCT } from './../../admin.actions';
+import { CREATE_PRODUCT, DELETE_PRODUCT, UPDATE_PRODUCT } from './../../admin.actions';
 
 @Component({
   selector: 'lw-product-form',
@@ -26,8 +27,8 @@ export class ProductFormComponent extends FormComponent implements OnInit {
   id: string;
 
   constructor(
+    private modalService: ModalService,
     private fb: FormBuilder,
-    private categoryService: CategoryService,
     private productService: ProductService,
     private route: ActivatedRoute,
     private router: Router,
@@ -36,15 +37,15 @@ export class ProductFormComponent extends FormComponent implements OnInit {
 
     super();
 
-    this.categories$ = categoryService.getAll();
     this.id = this.route.snapshot.paramMap.get('id');
     if (this.id) {
-
       this.store.select('admin', 'selectedProduct').take(1).subscribe(p => this.product = p);
     }
+    this.categories$ = this.store.select('admin', 'categories');
   }
 
   ngOnInit() {
+    this.store.dispatch(REQUEST_CATEGORIES());
     this.form = this.fb.group({
       title: ['', Validators.compose([Validators.required])],
       price: ['', Validators.compose([Validators.required, Validators.min(0), CustomValidators.number])],
@@ -65,10 +66,13 @@ export class ProductFormComponent extends FormComponent implements OnInit {
   }
 
   deleteProduct(): void {
-    if (confirm('Are You sure to delete the selected product?')) {
-      this.store.dispatch(DELETE_PRODUCT(this.id));
-      this.router.navigate(['/admin/products']);
-    }
+    this.modalService.confirm('Delete selected product', 'Are you sure?')
+      .take(1)
+      .filter(Boolean)
+      .subscribe(() => {
+        this.store.dispatch(DELETE_PRODUCT(this.id));
+        this.router.navigate(['/admin/products']);
+      }, (e) => false);
   }
 
   return(): void {

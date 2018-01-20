@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { LOGOUT } from '@app/core/core.actions';
+import { GET_USER, LOGOUT } from '@app/core/core.actions';
+import { ModalService } from '@app/core/services/modal.service';
 import { ShoppingCart } from '@app/shared/models';
 import { ShoppingCartService } from '@app/shared/services';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
@@ -22,14 +22,14 @@ export class NavigationComponent implements OnInit {
 
   constructor(
     private cartService: ShoppingCartService,
-    private modalService: NgbModal,
+    private modalService: ModalService,
     private store: Store<any>
   ) {
-
+    this.appUser$ = this.store.select('core', 'user');
   }
 
   async ngOnInit() {
-    this.appUser$ = this.store.select('core', 'user');
+    this.store.dispatch(GET_USER());
     this.cart$ = await this.cartService.getCart();
   }
 

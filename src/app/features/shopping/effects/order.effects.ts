@@ -19,7 +19,7 @@ import {
 
 
 @Injectable()
-export class ShoppingEffects {
+export class OrderEffects {
   // Listen for the 'REQUEST_ORDER_DETAIL' action
   @Effect() requestOrderById$: Observable<Action> = this.actions$.ofType('REQUEST_ORDER_DETAIL')
     .mergeMap((action: CustomAction) =>

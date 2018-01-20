@@ -7,6 +7,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
+import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
 import { ErrorBoxComponent } from './components/error-box/error-box.component';
 import { FormComponent } from './components/forms/form/form.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
@@ -44,7 +45,8 @@ import { UserService } from './services/user.service';
     ProductCardComponent,
     ProductQuantityComponent,
     OrderDetailComponent,
-    DebounceClickDirective
+    DebounceClickDirective,
+    ConfirmModalComponent
   ],
   declarations: [
     ErrorBoxComponent,
@@ -53,7 +55,8 @@ import { UserService } from './services/user.service';
     ProductQuantityComponent,
     OrderDetailComponent,
     FormComponent,
-    DebounceClickDirective
+    DebounceClickDirective,
+    ConfirmModalComponent
   ],
   providers: [
     AuthService,
@@ -62,6 +65,8 @@ import { UserService } from './services/user.service';
     CategoryService,
     ProductService,
     ShoppingCartService,
-    OrderService]
+    OrderService
+  ],
+  entryComponents: [ConfirmModalComponent]
 })
 export class SharedModule { }

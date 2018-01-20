@@ -1,10 +1,12 @@
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/delay';
+import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 
 import { Injectable } from '@angular/core';
-import { OrderService, ProductService } from '@app/shared/services';
+import { REQUEST_CATEGORIES_FAILED, REQUEST_CATEGORIES_SUCCESS } from '@app/features/shopping/shopping.actions';
+import { CategoryService, OrderService, ProductService } from '@app/shared/services';
 import { Actions, Effect } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
@@ -42,7 +44,7 @@ export class AdminEffects {
   // Listen for the 'REQUEST_ADMIN_PRODUCTS' action
   @Effect() requestAdminProducts$: Observable<Action> = this.actions$.ofType('REQUEST_ADMIN_PRODUCTS')
     .mergeMap((action: CustomAction) =>
-      this.productService.getAll()
+      this.productService.getAll().distinctUntilChanged()
         // If successful, dispatch success action with result
         .map(data => REQUEST_ADMIN_PRODUCTS_SUCCESS(data)))
     // If request fails, dispatch failed action
@@ -89,7 +91,19 @@ export class AdminEffects {
     .catch(() => of(UPDATE_PRODUCT_FAILED())
     );
 
+  // Listen for the 'REQUEST_CATEGORIES' action
+  @Effect() requestCategories$: Observable<Action> = this.actions$.ofType('REQUEST_CATEGORIES')
+    .mergeMap((action: CustomAction) =>
+      this.categoryService.getAll()
+        // If successful, dispatch success action with result
+        .map(data => REQUEST_CATEGORIES_SUCCESS(data))
+        // If request fails, dispatch failed action
+        .catch(() => of(REQUEST_CATEGORIES_FAILED()))
+    );
+
+
   constructor(
+    private categoryService: CategoryService,
     private orderService: OrderService,
     private productService: ProductService,
     private actions$: Actions

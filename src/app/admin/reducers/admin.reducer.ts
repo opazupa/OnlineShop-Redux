@@ -18,8 +18,14 @@ const adminOrdersReducer = handleActions({
 }, []);
 
 const adminProductsReducer = handleActions({
+  REQUEST_ADMIN_PRODUCTS: (state, action) => [],
   REQUEST_ADMIN_PRODUCTS_SUCCESS: (state, action) => action.payload,
   REQUEST_ADMIN_PRODUCTS_FAILED: (state, action) => []
+}, []);
+
+export const categoryReducer = handleActions({
+  REQUEST_CATEGORIES_SUCCESS: (state, action) => action.payload,
+  REQUEST_CATEGORIES_FAILED: (state, action) => []
 }, []);
 
 const selectedProductReducer = handleActions({
@@ -37,6 +43,7 @@ export const loadingReducer = handleActions({
 export default combineReducers({
   orders: adminOrdersReducer,
   products: adminProductsReducer,
+  categories: categoryReducer,
   selectedProduct: selectedProductReducer,
   isLoading: loadingReducer
 });

@@ -48,7 +48,7 @@ export class CoreEffects {
   // Listen for the 'LOGOUT' action
   @Effect() appUser$: Observable<Action> = this.actions$.ofType('GET_USER')
     .mergeMap((action: CustomAction) =>
-      this.auth.appUser$.take(1)
+      this.auth.appUser$
         // If successful, dispatch success action with result
         .map(data => GET_USER_SUCCESS(data))
         // If GrequestET fails, dispatch failed action

@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
-import { CategoryService } from '@app/shared/services';
+import { Component, Input, OnInit } from '@angular/core';
+import { REQUEST_CATEGORIES } from '@app/features/shopping/shopping.actions';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -7,15 +8,18 @@ import { Observable } from 'rxjs/Observable';
   templateUrl: './product-filter.component.html',
   styleUrls: ['./product-filter.component.scss']
 })
-export class ProductFilterComponent {
+export class ProductFilterComponent implements OnInit {
 
   @Input('category')
   category: string;
   categories$: Observable<any>;
 
-  constructor(private categoryService: CategoryService) {
-    this.categories$ = this.categoryService.getAll();
+  constructor(private store: Store<any>) {
+    this.categories$ = this.store.select('shopping', 'categories');
   }
 
+  ngOnInit() {
+    this.store.dispatch(REQUEST_CATEGORIES());
+  }
 
 }

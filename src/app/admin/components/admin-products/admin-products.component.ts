@@ -1,13 +1,17 @@
+import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/take';
 
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { DELETE_PRODUCT, REQUEST_ADMIN_PRODUCTS, REQUEST_SINGLE_PRODUCT } from '@app/admin/admin.actions';
+import { REQUEST_ADMIN_PRODUCTS, REQUEST_SINGLE_PRODUCT } from '@app/admin/admin.actions';
+import { ModalService } from '@app/core/services/modal.service';
 import { Product } from '@app/shared/models';
 import { ProductService } from '@app/shared/services';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
+
+import { DELETE_PRODUCT } from './../../admin.actions';
 
 @Component({
   selector: 'lw-admin-products',
@@ -21,8 +25,13 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   isLoading$: Observable<Boolean>;
 
-  constructor(private productService: ProductService, private router: Router, private store: Store<any>) {
-    this.subscription = this.store.select('admin', 'products').take(1).subscribe(ps => this.filteredProducts = this.products = ps);
+  constructor(
+    private productService: ProductService,
+    private router: Router,
+    private modalService: ModalService,
+    private store: Store<any>
+  ) {
+    this.subscription = this.store.select('admin', 'products').subscribe(ps => this.filteredProducts = this.products = ps);
     this.isLoading$ = this.store.select('admin', 'isLoading');
   }
 
@@ -46,9 +55,10 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   }
 
   deleteProduct(product: Product) {
-    if (confirm('Are You sure to delete the selected product?')) {
-      this.store.dispatch(DELETE_PRODUCT(product.key));
-    }
+    this.modalService.confirm('Delete selected product!', 'Are you sure?')
+      .take(1)
+      .filter(Boolean)
+      .subscribe(() => this.store.dispatch(DELETE_PRODUCT(product.key)), (e) => false);
   }
 
 }

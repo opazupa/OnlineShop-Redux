@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { REQUEST_OFFERS } from '@app/features/shopping/shopping.actions';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'lw-offers',
@@ -7,6 +10,11 @@ import { Component } from '@angular/core';
 })
 export class OffersComponent {
 
-  constructor() { }
+  offers$: Observable<any>;
+
+  constructor(private store: Store<any>) {
+    this.offers$ = this.store.select('shopping', 'shop', 'offers');
+    this.store.dispatch(REQUEST_OFFERS());
+  }
 
 }

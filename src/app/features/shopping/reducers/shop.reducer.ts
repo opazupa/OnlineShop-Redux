@@ -12,13 +12,13 @@ import {
 
 export const productReducer = handleActions({
   REQUEST_PRODUCTS_SUCCESS: (state, action) => action.payload,
-  REQUEST_PRODUCTS_FAILED: (state, action) => null
-}, null);
+  REQUEST_PRODUCTS_FAILED: (state, action) => []
+}, []);
 
 export const offerReducer = handleActions({
   REQUEST_OFFERS_SUCCESS: (state, action) => action.payload,
-  REQUEST_OFFERS_FAILED: (state, action) => null
-}, null);
+  REQUEST_OFFERS_FAILED: (state, action) => []
+}, []);
 
 
 export const loadingReducer = handleActions({

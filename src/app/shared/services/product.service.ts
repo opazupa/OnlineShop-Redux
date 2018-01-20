@@ -12,7 +12,8 @@ export class ProductService {
   constructor(private db: AngularFireDatabase) { }
 
   create(product: Product) {
-    return Observable.fromPromise(this.db.list('/products').push(product));
+    const productId = this.db.list('/products').push(product).key;
+    return this.getProduct(productId);
   }
 
   getAll(): Observable<Product[]> {
