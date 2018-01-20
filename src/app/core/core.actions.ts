@@ -14,6 +14,8 @@ export const GET_USER_FAILED = createAction('GET_USER_FAILED');
 
 export const AUTHENTICATED = createAction('AUTHENTICATED');
 export const NOT_AUTHENTICATED = createAction('NOT_AUTHENTICATED');
+export const PERMISSION_DENIED = createAction('PERMISSION_DENIED');
 
+export const CLEAR_NOTIFICATIONS = createAction('CLEAR_NOTIFICATIONS');
 
 

@@ -6,6 +6,8 @@ import { Notification } from '@app/shared/models';
 import { Store } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
 
+import { CLEAR_NOTIFICATIONS } from './../core.actions';
+
 @Injectable()
 export class NotificationService {
   constructor(private toastr: ToastrService, private store: Store<any>) {
@@ -23,5 +25,6 @@ export class NotificationService {
     } else if (toast.type === 'error') {
       this.toastr.error(toast.message, toast.title);
     }
+    setTimeout(() => this.store.dispatch(CLEAR_NOTIFICATIONS()), 5000);
   }
 }

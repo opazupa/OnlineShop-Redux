@@ -54,8 +54,6 @@ export class CoreEffects {
         // If GrequestET fails, dispatch failed action
         .catch(() => of(GET_USER_FAILED()))
     );
-
-  //CATEGORIES!! TODO
   constructor(
     private userService: UserService,
     private auth: AuthService,

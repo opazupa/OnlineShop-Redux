@@ -1,23 +1,72 @@
 import { Notification } from '@app/shared/models';
 import { handleActions } from 'redux-actions';
 
-
+// TODO
 export const notificationsReducer = handleActions({
-  REQUEST_ADMIN_ORDERS: (state, action) => {
+  // SUCCESS MESSAGES -->
+  CLEAR_SHOPPING_CART_SUCCESS: (state, action) => {
     const toast: Notification = {
       type: 'success',
-      title: 'hei',
-      message: 'moi'
+      message: 'Shopping cart cleared'
     };
     return toast;
   },
-  REQUEST_ORDERS: (state, action) => {
+  AUTHENTICATED: (state, action) => {
+    const toast: Notification = {
+      type: 'success',
+      message: 'Logged in!'
+    };
+    return toast;
+  },
+  LOGOUT_SUCCESS: (state, action) => {
+    const toast: Notification = {
+      type: 'success',
+      message: 'Logged out!'
+    };
+    return toast;
+  },
+  PLACE_ORDER_SUCCESS: (state, action) => {
+    const toast: Notification = {
+      type: 'success',
+      message: 'Order placed successfully!'
+    };
+    return toast;
+  },
+  NOT_AUTHENTICATED: (state, action) => {
+    const toast: Notification = {
+      type: 'success',
+      message: 'Logged out!'
+    };
+    return toast;
+  },
+  // ERROR MESSAGES -->
+  PLACE_ORDER_FAILED: (state, action) => {
     const toast: Notification = {
       type: 'error',
-      title: 'hei',
-      message: 'moi'
+      message: 'Error while placing your order'
     };
     return toast;
   },
-  NOT_AUTHENTICATED: (state, action) => null
+  LOGIN_FAILED: (state, action) => {
+    const toast: Notification = {
+      type: 'succerroress',
+      message: 'Login failed!'
+    };
+    return toast;
+  },
+  LOGOUT_FAILED: (state, action) => {
+    const toast: Notification = {
+      type: 'error',
+      message: 'Logout failed!'
+    };
+    return toast;
+  },
+  PERMISSION_DENIED: (state, action) => {
+    const toast: Notification = {
+      type: 'error',
+      message: 'Not allowed!'
+    };
+    return toast;
+  },
+  CLEAR_NOTIFICATIONS: (state, action) => null
 }, null);

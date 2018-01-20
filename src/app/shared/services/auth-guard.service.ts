@@ -3,7 +3,7 @@ import 'rxjs/add/operator/map';
 import { Injectable } from '@angular/core';
 import { CanActivate } from '@angular/router';
 import { Router, RouterStateSnapshot } from '@angular/router';
-import { NOT_AUTHENTICATED } from '@app/core/core.actions';
+import { PERMISSION_DENIED } from '@app/core/core.actions';
 import { Store } from '@ngrx/store';
 
 import { AuthService } from './auth.service';
@@ -18,7 +18,7 @@ export class AuthGuard implements CanActivate {
       if (user) {
         return true;
       }
-      this.store.dispatch(NOT_AUTHENTICATED());
+      this.store.dispatch(PERMISSION_DENIED());
       this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
       return false;
     });
