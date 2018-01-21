@@ -15,7 +15,7 @@ export class AdminOrdersComponent implements OnInit {
   orders$: Observable<Order[]>;
   isLoading$: Observable<Boolean>;
 
-  constructor(private store: Store<State>, private router: Router) {
+  constructor(private store: Store<any>, private router: Router) {
     this.orders$ = this.store.select('admin', 'orders');
     this.isLoading$ = this.store.select('admin', 'isLoading');
   }
