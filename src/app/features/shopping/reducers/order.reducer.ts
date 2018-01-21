@@ -5,8 +5,10 @@ import { REQUEST_ORDERS, REQUEST_ORDERS_FAILED, REQUEST_ORDERS_SUCCESS } from '.
 
 export const ordersReducer = handleActions({
   REQUEST_ORDERS_SUCCESS: (state, action) => action.payload,
-  REQUEST_ORDERS_FAILED: (state, action) => null
-}, null);
+  REQUEST_ORDERS_FAILED: (state, action) => [],
+  PLACE_ORDER_SUCCESS: (state, action) => action.payload,
+  PLACE_ORDER: (state, action) => []
+}, []);
 
 
 export const loadingReducer = handleActions({

@@ -1,24 +1,32 @@
+import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/switchMap';
 
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 
 import { Order } from '../models';
-import { ShoppingCartService } from './shopping-cart.service';
 
 @Injectable()
 export class OrderService {
 
   constructor(
     private db: AngularFireDatabase,
-    private cartService: ShoppingCartService) { }
+    private router: Router) { }
 
 
-  async placeOrder(order: Order) {
-    const result = await this.db.list('/orders/').push(order);
-    this.cartService.clearCart();
-    return result;
+  placeOrder(order: Order): Observable<Order> {
+    return Observable.of(this.db.list('/orders/').push(order).key)
+      .switchMap((orderId) => {
+        this.router.navigate(['/shop/order-success/', orderId]);
+        return this.db.object('/orders/' + orderId).snapshotChanges() as Observable<any>;
+      })
+      .map(o => {
+        const newOrder = <Order>({ key: o.payload.key, ...o.payload.val() });
+        return Object.assign(new Order(), newOrder);
+      });
   }
 
   getOrders(): Observable<Order[]> {

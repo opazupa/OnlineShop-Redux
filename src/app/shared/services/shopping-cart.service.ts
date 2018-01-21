@@ -3,57 +3,54 @@ import 'rxjs/add/operator/take';
 
 import { Injectable } from '@angular/core';
 import { Product, ShoppingCart } from '@app/shared/models';
+import { Store } from '@ngrx/store';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class ShoppingCartService {
 
-  constructor(private db: AngularFireDatabase) { }
-
-  async getCart(): Promise<Observable<ShoppingCart>> {
-    const cartId = await this.getOrCreateCartId();
-    const cart$ = this.db.object('/shopping-carts/' + cartId).valueChanges() as Observable<any>;
-    return cart$.map(x => new ShoppingCart(x.items));
+  cartId: string;
+  constructor(private db: AngularFireDatabase, private store: Store<any>) {
+    this.store.select('core', 'shoppingCart').filter(Boolean).subscribe(cart => this.cartId = cart.cartId);
   }
 
-  async addToCart(product: Product) {
-    this.updateItem(product, 1);
+  getCart(): Observable<ShoppingCart> {
+
+    const cart$ = this.getOrCreateCart().switchMap((cartId) =>
+      this.db.object('/shopping-carts/' + this.cartId).valueChanges() as Observable<any>);
+    return cart$.map((cart: any) => new ShoppingCart(cart.items, this.cartId));
+
   }
 
-  async removeFromCart(product: Product) {
-    this.updateItem(product, -1);
+  addToCart(product: Product) {
+    return Observable.of(this.updateItem(product, 1));
   }
 
-  async clearCart(): Promise<any> {
-    const cartId = await this.getOrCreateCartId();
-    return this.db.object('/shopping-carts/' + cartId + '/items').remove();
+  removeFromCart(product: Product) {
+    return Observable.of(this.updateItem(product, -1));
   }
 
-  private create() {
-    return this.db.list('/shopping-carts').push({
-      dateCreated: new Date().getTime()
-    });
+  clearCart(): Observable<any> {
+    return Observable.fromPromise(this.db.object('/shopping-carts/' + this.cartId + '/items').remove());
+  }
+
+  private getOrCreateCart() {
+    if (!this.cartId) {
+      this.cartId = this.db.list('/shopping-carts').push({
+        dateCreated: new Date().getTime()
+      }).key;
+    }
+    return Observable.of(this.cartId);
   }
 
   private getItem(cartId: string, productId: string) {
     return this.db.object('/shopping-carts/' + cartId + '/items/' + productId);
   }
 
-  private async getOrCreateCartId(): Promise<string> {
-    let cartId = localStorage.getItem('cartId');
 
-    if (!cartId) {
-      const result = await this.create();
-      cartId = result.key;
-      localStorage.setItem('cartId', cartId);
-    }
-    return cartId;
-  }
-
-  private async updateItem(product: Product, change: number) {
-    const cartId = await this.getOrCreateCartId();
-    const item$ = this.getItem(cartId, product.key);
+  private updateItem(product: Product, change: number) {
+    const item$ = this.getItem(this.cartId, product.key);
     item$.snapshotChanges().take(1).subscribe(item => {
 
       const quantity = (item.payload.val() ? item.payload.val().quantity : 0) + change;

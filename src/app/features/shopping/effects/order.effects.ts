@@ -1,4 +1,5 @@
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 
@@ -11,6 +12,9 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 
 import {
+  CLEAR_SHOPPING_CART,
+  PLACE_ORDER_FAILED,
+  PLACE_ORDER_SUCCESS,
   REQUEST_ORDER_DETAIL_FAILED,
   REQUEST_ORDER_DETAIL_SUCCESS,
   REQUEST_ORDERS_FAILED,
@@ -37,6 +41,16 @@ export class OrderEffects {
         .map(data => REQUEST_ORDERS_SUCCESS(data))
         // If request fails, dispatch failed action
         .catch(() => of(REQUEST_ORDERS_FAILED()))
+    );
+
+  // Listen for the 'PLACE_ORDER' action
+  @Effect() placeOrder$: Observable<Action> = this.actions$.ofType('PLACE_ORDER')
+    .mergeMap((action: CustomAction) =>
+      this.orderService.placeOrder(action.payload)
+        // If successful, dispatch success action with result
+        .mergeMap(data => Observable.of(PLACE_ORDER_SUCCESS(data), CLEAR_SHOPPING_CART()))
+        // If request fails, dispatch failed action
+        .catch(() => of(PLACE_ORDER_FAILED()))
     );
 
   constructor(

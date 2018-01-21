@@ -3,13 +3,15 @@
     <lw-product-filter [category]="category"></lw-product-filter>
   </div>
   <div class="col">
-    <div class="row" *ngIf="cart$ | async as cart; else spinner">
-      <div class="card-columns">
-        <ng-container *ngFor="let product of filteredProducts; let i = index">
-          <lw-product-card class="fixedd" [product]="product" [shopping-cart]="cart" [show-category]="false"></lw-product-card>
-        </ng-container>
+    <ng-container *ngIf="!(isLoading$ | async); else spinner">
+      <div class="row" *ngIf="cart$ | async as cart">
+        <div class="card-columns">
+          <ng-container *ngFor="let product of filteredProducts; let i = index">
+            <lw-product-card [product]="product" [shopping-cart]="cart" [show-category]="false"></lw-product-card>
+          </ng-container>
+        </div>
       </div>
-    </div>
+    </ng-container>
     <ng-template #spinner>
       <lw-spinner></lw-spinner>
     </ng-template>

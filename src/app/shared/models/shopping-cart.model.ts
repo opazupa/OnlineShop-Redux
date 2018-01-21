@@ -5,9 +5,12 @@ import { ShoppingCartItem } from './shopping-cart-item.model';
 export class ShoppingCart {
 
   items: ShoppingCartItem[] = [];
+  cartId: string;
 
-  constructor(private itemsMap: { [key: string]: ShoppingCartItem }) {
+
+  constructor(private itemsMap: { [key: string]: ShoppingCartItem }, cartId: string) {
     this.itemsMap = itemsMap || {};
+    this.cartId = cartId;
 
     for (const productId in itemsMap) {
 

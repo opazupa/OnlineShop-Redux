@@ -5,7 +5,7 @@ import { PLACE_ORDER } from '@app/features/shopping/shopping.actions';
 import { FormComponent } from '@app/shared/components';
 import { Order, ShippingInformation, ShoppingCart } from '@app/shared/models';
 import { AuthService, OrderService } from '@app/shared/services';
-import { Store } from '@ngrx/store/src/store';
+import { Store } from '@ngrx/store';
 import { CustomValidators } from 'ng2-validation';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -47,12 +47,9 @@ export class ShippingFormComponent extends FormComponent implements OnInit, OnDe
   }
 
 
-  async placeOrder() {
+  placeOrder() {
     const order = new Order(this.userId, this.form.value as ShippingInformation, this.cart);
-
     this.store.dispatch(PLACE_ORDER(order));
-    const result = await this.orderService.placeOrder(order);
-    this.router.navigate(['/shop/order-success/', result.key]);
   }
 
 

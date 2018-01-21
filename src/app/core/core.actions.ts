@@ -18,4 +18,7 @@ export const PERMISSION_DENIED = createAction('PERMISSION_DENIED');
 
 export const CLEAR_NOTIFICATIONS = createAction('CLEAR_NOTIFICATIONS');
 
+export const GET_SHOPPING_CART = createAction('GET_SHOPPING_CART');
+export const GET_SHOPPING_CART_FAILED = createAction('GET_SHOPPING_CART_FAILED');
+export const GET_SHOPPING_CART_SUCCESS = createAction('GET_SHOPPING_CART_SUCCESS');
 

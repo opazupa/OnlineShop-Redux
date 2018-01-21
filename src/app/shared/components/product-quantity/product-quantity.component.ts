@@ -21,12 +21,10 @@ export class ProductQuantityComponent {
 
   addToCart(): void {
     this.store.dispatch(ADD_TO_SHOPPING_CART(this.product));
-    this.cartService.addToCart(this.product);
   }
 
   removeFromCart(): void {
     this.store.dispatch(REMOVE_FROM_SHOPPING_CART(this.product));
-    this.cartService.removeFromCart(this.product);
   }
 
 }

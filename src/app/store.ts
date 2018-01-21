@@ -5,7 +5,10 @@ import { localStorageSync } from 'ngrx-store-localstorage';
 
 // Sync states with localstorage and rehydrate on startup
 function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
-  return localStorageSync({ keys: ['core', 'shopping', 'admin'], rehydrate: true })(reducer);
+  return localStorageSync({
+    keys: [{ 'core': ['auth', 'user', 'orderDetail', 'shoppingCart'] }, 'shopping', 'admin'],
+    rehydrate: true
+  })(reducer);
 }
 export const metaReducers: Array<MetaReducer<any, any>> = !environment.production ?
   [localStorageSyncReducer, storeFreeze] : [localStorageSyncReducer];

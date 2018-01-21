@@ -20,7 +20,7 @@ import {
   LOGIN_FAILED,
   LOGOUT_FAILED,
   NOT_AUTHENTICATED,
-} from './core.actions';
+} from '../core.actions';
 
 
 @Injectable()

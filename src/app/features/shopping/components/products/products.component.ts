@@ -19,7 +19,8 @@ export class ProductsComponent implements OnInit {
   products: Product[] = [];
   filteredProducts: Product[] = [];
   category: string;
-  cart$: Observable<ShoppingCart>; // TODO
+  cart$: Observable<ShoppingCart>;
+  isLoading$: Observable<Boolean>;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,11 +28,12 @@ export class ProductsComponent implements OnInit {
     private cartService: ShoppingCartService,
     private store: Store<any>) {
     this.products$ = this.store.select('shopping', 'shop', 'products');
+    this.cart$ = this.store.select('core', 'shoppingCart');
+    this.isLoading$ = this.store.select('core', 'isLoading');
   }
 
-  async ngOnInit() {
+  ngOnInit() {
     this.store.dispatch(REQUEST_PRODUCTS());
-    this.cart$ = await this.cartService.getCart();
     this.populateProducts();
   }
 

@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { RouterOutlet } from '@angular/router';
+import { NotificationService } from '@app/core/services/notification.service';
 import { routerTransition } from '@app/shared/animations';
 import { AuthService, UserService } from '@app/shared/services';
-import { ToasterConfig } from 'angular2-toaster';
-import { NotificationService } from '@app/core/services/notification.service';
 
 @Component({
   selector: 'app-root',
