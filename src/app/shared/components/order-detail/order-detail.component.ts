@@ -5,7 +5,6 @@ import { REQUEST_ORDER_DETAIL } from '@app/features/shopping/shopping.actions';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
-import { OrderService } from '../../services/order.service';
 import { Order } from './../../models/order.model';
 
 @Component({
@@ -21,7 +20,7 @@ export class OrderDetailComponent implements OnInit {
   order$: Observable<Order>;
   isLoading$: Observable<Boolean>;
 
-  constructor(private store: Store<any>, private orderService: OrderService, private route: ActivatedRoute, private location: Location) {
+  constructor(private store: Store<any>, private route: ActivatedRoute, private location: Location) {
     this.orderId = this.route.snapshot.params.orderId;
     this.store.dispatch(REQUEST_ORDER_DETAIL(this.orderId));
   }

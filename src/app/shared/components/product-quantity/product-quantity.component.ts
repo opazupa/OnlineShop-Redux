@@ -3,8 +3,6 @@ import { ADD_TO_SHOPPING_CART, REMOVE_FROM_SHOPPING_CART } from '@app/features/s
 import { Product } from '@app/shared/models';
 import { Store } from '@ngrx/store';
 
-import { ShoppingCartService } from '../../services/shopping-cart.service';
-
 @Component({
   selector: 'lw-product-quantity',
   templateUrl: './product-quantity.component.html',
@@ -17,7 +15,7 @@ export class ProductQuantityComponent {
   @Input('shopping-cart')
   shoppingCart;
 
-  constructor(private cartService: ShoppingCartService, private store: Store<any>) { }
+  constructor(private store: Store<any>) { }
 
   addToCart(): void {
     this.store.dispatch(ADD_TO_SHOPPING_CART(this.product));

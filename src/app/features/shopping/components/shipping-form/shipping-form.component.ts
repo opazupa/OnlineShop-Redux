@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { PLACE_ORDER } from '@app/features/shopping/shopping.actions';
 import { FormComponent } from '@app/shared/components';
 import { Order, ShippingInformation, ShoppingCart } from '@app/shared/models';
-import { AuthService, OrderService } from '@app/shared/services';
 import { Store } from '@ngrx/store';
 import { CustomValidators } from 'ng2-validation';
 import { Subscription } from 'rxjs/Subscription';
@@ -24,8 +23,6 @@ export class ShippingFormComponent extends FormComponent implements OnInit, OnDe
   constructor(
     private fb: FormBuilder,
     private store: Store<any>,
-    private auth: AuthService,
-    private orderService: OrderService,
     private router: Router) {
     super();
   }
@@ -39,13 +36,12 @@ export class ShippingFormComponent extends FormComponent implements OnInit, OnDe
       additionalInfo: ['']
     });
 
-    this.subscription = this.auth.user$.subscribe(u => this.userId = u.uid);
+    this.subscription = this.store.select('core', 'user').subscribe(user => this.userId = user.id);
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-
 
   placeOrder() {
     const order = new Order(this.userId, this.form.value as ShippingInformation, this.cart);

@@ -4,7 +4,7 @@
   </div>
   <div class="col">
     <ng-container *ngIf="!(isLoading$ | async); else spinner">
-      <div class="row" *ngIf="cart$ | async as cart">
+      <div class="row" *ngIf="cart$ | async as cart" [@routerTransition]>
         <div class="card-columns">
           <ng-container *ngFor="let product of filteredProducts; let i = index">
             <lw-product-card [product]="product" [shopping-cart]="cart" [show-category]="false"></lw-product-card>

@@ -1,54 +1,56 @@
-<h1>Shopping cart</h1>
-<div *ngIf="!(isLoading$ | async); else spinner">
-  <ng-container *ngIf="cart$ | async as cart">
-    <p>
-      You have {{ cart.totalItemsCount }} items in your shopping cart.
-      <button (click)="clearCart()" class="btn btn-outline-dark btn-sm">
-        Clear Shopping Cart
-      </button>
-    </p>
-    <div class=" table-responsive">
-      <table class="table">
-        <thead>
-          <tr>
-            <th></th>
-            <th class="text-left">Product</th>
-            <th class="text-center" style="min-width: 180px">Quantity</th>
-            <th class="text-right" style="max-width: 100px">Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of cart.items">
-            <td>
-              <div class="thumbnail" [style.backgroundImage]="'url(' + item.imageUrl + ')'"></div>
-            </td>
-            <td class="text-left">
-              {{ item.title }}
-            </td>
-            <td>
-              <lw-product-quantity [shopping-cart]="cart" [product]="item"></lw-product-quantity>
-            </td>
-            <td class="text-right">
-              {{ item.totalPrice | currency:'EUR':'symbol':'0.2-2':'fi' }}
-            </td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th class="text-right"> {{ cart.totalPrice | currency:'EUR':'symbol':'0.2-2':'fi' }} </th>
-          </tr>
-        </tfoot>
-      </table>
-    </div>
-    <a *ngIf="!cart.isEmpty" routerLink="/shop/check-out" class="btn btn-primary ">
-      Checkout
-    </a>
-  </ng-container>
-</div>
+<div [@routerTransition]>
+  <h1>Shopping cart</h1>
+  <div *ngIf="!(isLoading$ | async); else spinner">
+    <ng-container *ngIf="cart$ | async as cart">
+      <p>
+        You have {{ cart.totalItemsCount }} items in your shopping cart.
+        <button (click)="clearCart()" class="btn btn-outline-dark btn-sm">
+          Clear Shopping Cart
+        </button>
+      </p>
+      <div class=" table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th></th>
+              <th class="text-left">Product</th>
+              <th class="text-center" style="min-width: 180px">Quantity</th>
+              <th class="text-right" style="max-width: 100px">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of cart.items">
+              <td>
+                <div class="thumbnail" [style.backgroundImage]="'url(' + item.imageUrl + ')'"></div>
+              </td>
+              <td class="text-left">
+                {{ item.title }}
+              </td>
+              <td>
+                <lw-product-quantity [shopping-cart]="cart" [product]="item"></lw-product-quantity>
+              </td>
+              <td class="text-right">
+                {{ item.totalPrice | currency:'EUR':'symbol':'0.2-2':'fi' }}
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th class="text-right"> {{ cart.totalPrice | currency:'EUR':'symbol':'0.2-2':'fi' }} </th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <a *ngIf="!cart.isEmpty" routerLink="/shop/check-out" class="btn btn-primary ">
+        Checkout
+      </a>
+    </ng-container>
+  </div>
 
-<ng-template #spinner>
-  <lw-spinner></lw-spinner>
-</ng-template>
+  <ng-template #spinner>
+    <lw-spinner></lw-spinner>
+  </ng-template>
+</div>

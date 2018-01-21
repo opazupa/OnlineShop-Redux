@@ -3,15 +3,16 @@ import 'rxjs/add/operator/switchMap';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { REQUEST_PRODUCTS } from '@app/features/shopping/shopping.actions';
+import { routerTransition } from '@app/shared/animations';
 import { Product, ShoppingCart } from '@app/shared/models';
-import { ProductService, ShoppingCartService } from '@app/shared/services';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'lw-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss']
+  styleUrls: ['./products.component.scss'],
+  animations: [routerTransition]
 })
 export class ProductsComponent implements OnInit {
 
@@ -24,8 +25,6 @@ export class ProductsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService,
-    private cartService: ShoppingCartService,
     private store: Store<any>) {
     this.products$ = this.store.select('shopping', 'shop', 'products');
     this.cart$ = this.store.select('core', 'shoppingCart');

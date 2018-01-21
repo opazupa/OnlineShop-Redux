@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
+import { routerTransition } from '@app/shared/animations';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'lw-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  providers: [NgbCarouselConfig]
+  providers: [NgbCarouselConfig],
+  animations: [routerTransition]
 })
 export class HomeComponent {
 

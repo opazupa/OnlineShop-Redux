@@ -1,3 +1,5 @@
+import 'rxjs/add/operator/map';
+
 import { Injectable } from '@angular/core';
 import { AppUser } from '@app/shared/models';
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -17,7 +19,10 @@ export class UserService {
   }
 
   get(uid: string): Observable<AppUser> {
-    return this.db.object('/users/' + uid).valueChanges() as Observable<AppUser>;
+    return this.db.object('/users/' + uid).valueChanges()
+      .map(user => {
+        return ({ id: uid, ...user }) as AppUser;
+      });
   }
 
 }

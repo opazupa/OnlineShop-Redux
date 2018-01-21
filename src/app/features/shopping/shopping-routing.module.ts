@@ -15,8 +15,8 @@ export const routes: Routes = [
   { path: 'order-success/:orderId', component: OrderSuccessComponent, canActivate: [AuthGuard] },
   { path: 'my-orders/:orderId', component: OrderDetailComponent, canActivate: [AuthGuard] },
   { path: 'products', component: ProductsComponent },
-  { path: 'offers', component: OffersComponent, data: { animation: 'offers' } },
-  { path: 'shopping-cart', component: ShoppingCartComponent, data: { animation: 'shopping-cart' } },
+  { path: 'offers', component: OffersComponent },
+  { path: 'shopping-cart', component: ShoppingCartComponent },
   { path: 'my-orders', component: MyOrdersComponent, canActivate: [AuthGuard] },
   { path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard] }
 ];

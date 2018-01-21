@@ -17,4 +17,15 @@ export class ConfirmModalComponent implements OnInit {
   ngOnInit() {
   }
 
+  cancel() {
+    this.activeModal.close(false);
+  }
+
+  confirm() {
+    this.activeModal.close(true);
+  }
+
+  dismiss() {
+    this.activeModal.dismiss(false);
+  }
 }

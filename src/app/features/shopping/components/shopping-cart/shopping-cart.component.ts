@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CLEAR_SHOPPING_CART } from '@app/features/shopping/shopping.actions';
+import { routerTransition } from '@app/shared/animations';
 import { ShoppingCart } from '@app/shared/models';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
@@ -7,7 +8,8 @@ import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'lw-shopping-cart',
   templateUrl: './shopping-cart.component.html',
-  styleUrls: ['./shopping-cart.component.scss']
+  styleUrls: ['./shopping-cart.component.scss'],
+  animations: [routerTransition]
 })
 export class ShoppingCartComponent implements OnInit {
 

@@ -8,7 +8,6 @@ import { ModalService } from '@app/core/services/modal.service';
 import { REQUEST_CATEGORIES } from '@app/features/shopping/shopping.actions';
 import { FormComponent } from '@app/shared/components';
 import { Product } from '@app/shared/models';
-import { ProductService } from '@app/shared/services';
 import { Store } from '@ngrx/store';
 import { CustomValidators } from 'ng2-validation';
 import { Observable } from 'rxjs/Observable';
@@ -29,7 +28,6 @@ export class ProductFormComponent extends FormComponent implements OnInit {
   constructor(
     private modalService: ModalService,
     private fb: FormBuilder,
-    private productService: ProductService,
     private route: ActivatedRoute,
     private router: Router,
     private location: Location,

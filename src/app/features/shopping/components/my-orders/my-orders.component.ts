@@ -4,7 +4,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { REQUEST_ORDERS } from '@app/features/shopping/shopping.actions';
 import { Order } from '@app/shared/models';
-import { AuthService, OrderService } from '@app/shared/services';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
@@ -19,8 +18,6 @@ export class MyOrdersComponent implements OnInit {
   order: Order;
   constructor(
     private store: Store<any>,
-    private auth: AuthService,
-    private orderService: OrderService,
     private router: Router) {
     this.orders$ = this.store.select('shopping', 'orders', 'userOrders');
   }

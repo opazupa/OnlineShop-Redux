@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { GET_SHOPPING_CART, GET_USER, LOGOUT } from '@app/core/core.actions';
 import { ModalService } from '@app/core/services/modal.service';
 import { ShoppingCart } from '@app/shared/models';
-import { ShoppingCartService } from '@app/shared/services';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
@@ -21,7 +20,6 @@ export class NavigationComponent implements OnInit {
   cart$: Observable<ShoppingCart>;
 
   constructor(
-    private cartService: ShoppingCartService,
     private modalService: ModalService,
     private store: Store<any>
   ) {

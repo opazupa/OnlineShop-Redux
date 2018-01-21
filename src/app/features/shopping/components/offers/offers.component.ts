@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { REQUEST_OFFERS } from '@app/features/shopping/shopping.actions';
+import { routerTransition } from '@app/shared/animations';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'lw-offers',
   templateUrl: './offers.component.html',
-  styleUrls: ['./offers.component.scss']
+  styleUrls: ['./offers.component.scss'],
+  animations: [routerTransition]
 })
 export class OffersComponent {
 

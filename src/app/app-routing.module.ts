@@ -5,8 +5,8 @@ import { HomeComponent } from './core/components/home/home.component';
 import { LoginComponent } from './core/components/login/login.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, data: { animation: 'home' } },
-  { path: 'login', component: LoginComponent, data: { animation: 'home' } },
+  { path: '', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'shop', loadChildren: './features/shopping/shopping.module#ShoppingModule' },
   { path: 'admin', loadChildren: './admin/admin.module#AdminModule' }
 ];

@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { ADD_TO_SHOPPING_CART } from '@app/features/shopping/shopping.actions';
-import { ShoppingCartService } from '@app/shared/services';
 import { Store } from '@ngrx/store';
 
 import { Product } from '../../models';
@@ -21,10 +20,9 @@ export class ProductCardComponent {
   @Input('shopping-cart')
   shoppingCart;
 
-  constructor(private cartService: ShoppingCartService, private store: Store<any>) { }
+  constructor(private store: Store<any>) { }
 
   addToCart(): void {
     this.store.dispatch(ADD_TO_SHOPPING_CART(this.product));
-    this.cartService.addToCart(this.product);
   }
 }
