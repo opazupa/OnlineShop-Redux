@@ -3,7 +3,7 @@ import 'rxjs/add/operator/switchMap';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { REQUEST_PRODUCTS } from '@app/features/shopping/shopping.actions';
-import { routerTransition } from '@app/shared/animations';
+import { fadeInAnimation } from '@app/shared/animations';
 import { Product, ShoppingCart } from '@app/shared/models';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
@@ -12,7 +12,7 @@ import { Observable } from 'rxjs/Observable';
   selector: 'lw-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss'],
-  animations: [routerTransition]
+  animations: [fadeInAnimation]
 })
 export class ProductsComponent implements OnInit {
 
