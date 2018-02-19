@@ -62,15 +62,15 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 // }
 
 export const slideToTopWithFade = trigger('routerTransition', [
-  state('void', style({})),
+  state('void', style({ opacity: 0 })),
   state('*', style({})),
   transition(':enter', [
-    style({ transform: 'translateY(100%)' }),
-    animate('0.5s ease-in-out', style({ transform: 'translateY(0%)' }))
+    style({ transform: 'translateY(100%)', opacity: 0 }),
+    animate('1s ease-in-out', style({ transform: 'translateY(0%)', opacity: 1 }))
   ]),
   transition(':leave', [
     style({ transform: 'translateY(0%)' }),
-    animate('0.5s ease-in-out', style({ transform: 'translateY(-100%)' }))
+    animate('1s ease-in-out', style({ transform: 'translateY(-100%)' }))
   ])
 ]);
 

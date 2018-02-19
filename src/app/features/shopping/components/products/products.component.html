@@ -2,9 +2,9 @@
   <div class="col-md-3 col-sm-12 col-xs-12">
     <lw-product-filter [category]="category"></lw-product-filter>
   </div>
-  <div class="col">
+  <div class="col" [@fadeInAnimation]>
     <ng-container *ngIf="!(isLoading$ | async); else spinner">
-      <div class="row" *ngIf="cart$ | async as cart" [@routerTransition]>
+      <div class="row" *ngIf="cart$ | async as cart">
         <div class="card-columns">
           <ng-container *ngFor="let product of filteredProducts; let i = index">
             <lw-product-card [product]="product" [shopping-cart]="cart" [show-category]="false"></lw-product-card>
