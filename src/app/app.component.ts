@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NotificationService } from '@app/core/services/notification.service';
 import { AuthService, UserService } from '@app/shared/services';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,8 @@ import { AuthService, UserService } from '@app/shared/services';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
+  data$: Observable<any>;
 
   constructor(private userService: UserService,
     private auth: AuthService,
@@ -28,6 +31,7 @@ export class AppComponent {
   }
 
   moi() {
-    this.userService.test(12).subscribe((x) => console.log(x));
+    this.data$ = this.userService.test(101010);
+    //this.userService.test(12).subscribe((x) => console.log(x));
   }
 }

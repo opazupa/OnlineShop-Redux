@@ -7,3 +7,6 @@
 <button (click)="moi()">
   sub
 </button>
+<div *ngIf="data$ | async as data">
+  {{data.id}} {{data.a}} {{data.b}} {{data.c}} {{data.d}}
+</div>
