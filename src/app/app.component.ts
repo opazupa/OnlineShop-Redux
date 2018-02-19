@@ -26,4 +26,8 @@ export class AppComponent {
       }
     });
   }
+
+  moi() {
+    this.userService.test(12).subscribe((x) => console.log(x));
+  }
 }
