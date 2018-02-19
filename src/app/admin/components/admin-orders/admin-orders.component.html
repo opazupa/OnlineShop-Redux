@@ -1,8 +1,8 @@
 <h1>Orders</h1>
 <div *ngIf="!(isLoading$ | async); else spinner ">
   <div *ngIf="orders$ | async as orders">
-    <ngx-datatable class="bootstrap" [rows]="orders" [columnMode]="'force'" [headerHeight]="40" [footerHeight]="40" [limit]="15"
-      [rowHeight]="'auto'" [reorderable]="true">
+    <ngx-datatable class="bootstrap" [rows]="orders" [columnMode]="'force'" [headerHeight]="40" [footerHeight]="40" [limit]="15" [rowHeight]="'auto'"
+      [reorderable]="true">
       <ngx-datatable-column name="Customer" prop="shipping.name">
         <ng-template let-value="value" ngx-datatable-cell-template>
           {{value}}

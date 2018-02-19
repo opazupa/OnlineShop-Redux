@@ -18,16 +18,15 @@ $primary-color-hover: #f58d06;
 $secondary-color: #808080;
 $secondary-color-hover: $primary-color;
 $primary-font-family: 'Raleway';
-
 * {
   font-family: $primary-font-family;
 }
 
 ::-webkit-scrollbar {
   display: none;
-  }
+}
 
-html  { 
+html {
   position: relative;
   min-height: 100%;
 }
@@ -47,7 +46,7 @@ h3 {
 .badge-pill {
   background-color: $footer-color;
   border-color: $footer-color;
-  color: $highlight-color!important;
+  color: $highlight-color !important;
 }
 
 .navbar {
@@ -78,11 +77,11 @@ h3 {
 
 .btn-link {
   color: $primary-color;
-  text-decoration-line: none!important;
+  text-decoration-line: none !important;
   &:hover {
     color: $primary-color-hover;
-    border-style: solid!important;
-    border-color: $primary-color-hover!important;
+    border-style: solid !important;
+    border-color: $primary-color-hover !important;
   }
 }
 
@@ -104,8 +103,8 @@ h3 {
   border-color: $primary-color;
   &:hover,
   &:active {
-    background-color: $primary-color-hover!important;
-    border-color: $primary-color-hover!important;
+    background-color: $primary-color-hover !important;
+    border-color: $primary-color-hover !important;
   }
 }
 
@@ -120,8 +119,8 @@ h3 {
   border-color: $secondary-color;
   &:hover,
   &:active {
-    background-color: $secondary-color-hover!important;
-    border-color: $secondary-color-hover!important;
+    background-color: $secondary-color-hover !important;
+    border-color: $secondary-color-hover !important;
   }
 }
 
@@ -136,12 +135,11 @@ h3 {
 }
 
 .dropdown-item.active-route {
-  color: $primary-color!important;
+  color: $primary-color !important;
 }
 
 .active-route {
-  color: $footer-color!important;
-
+  color: $footer-color !important;
 }
 
 .footer {
@@ -153,13 +151,13 @@ h3 {
 }
 
 .navbar-toggler {
-  border: none!important;
-  padding: 0!important;
+  border: none !important;
+  padding: 0 !important;
 }
 
 .animated-toggler {
   span {
-    line-height: 1!important;
+    line-height: 1 !important;
     background: $highlight-color;
   }
 }
