@@ -19,7 +19,7 @@ import coreReducer from './core/reducers/core.reducers';
 import { metaReducers } from './store';
 
 registerLocaleData(localeFi, 'fi');
-console.log(environment.production);
+
 @NgModule({
   declarations: [
     AppComponent
@@ -27,14 +27,14 @@ console.log(environment.production);
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    environment.production ? ServiceWorkerModule.register('/ngsw-worker.js') : [],
     AngularFireModule.initializeApp(environment.fireBase),
     CoreModule,
     AppRoutingModule,
     ToastrModule.forRoot(),
     StoreModule.forRoot({ core: coreReducer }, { metaReducers }),
     StoreDevtoolsModule.instrument(),
-    EffectsModule.forRoot([CoreEffects, ShoppingCartEffects])
+    EffectsModule.forRoot([CoreEffects, ShoppingCartEffects]),
+    environment.production ? ServiceWorkerModule.register('/ngsw-worker.js') : []
   ],
   providers: [],
   bootstrap: [AppComponent]
