@@ -1,9 +1,11 @@
 {
   "hosting": {
     "public": "dist",
-    "rewrites": [ {
-      "source": "**/!(*.js|*.html|*.css|*.json|*.svg|*.png|*.jpg|*.jpeg)",
-      "destination": "/index.html"
-    } ]
+    "rewrites": [
+      {
+        "source": "**/!(*.js|*.html|*.css|*.json|*.svg|*.png|*.jpg|*.jpeg)",
+        "destination": "/index.html"
+      }
+    ]
   }
 }

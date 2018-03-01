@@ -8,11 +8,11 @@ export const environment = {
   envName: 'development',
   apiBaseUrl: '',
   fireBase: {
-    apiKey: 'AIzaSyCIt-4vgB824Nmu6okOhrRDJwGZbXVd4Gs',
-    authDomain: 'onlineshop-opa.firebaseapp.com',
-    databaseURL: 'https://onlineshop-opa.firebaseio.com',
-    projectId: 'onlineshop-opa',
-    storageBucket: 'onlineshop-opa.appspot.com',
-    messagingSenderId: '151126154544'
+    apiKey: 'AIzaSyDeRcHCw0Z5_9LVrGxbLewMzyqilAMElOw',
+    authDomain: 'onlineshop-opa-redux.firebaseapp.com',
+    databaseURL: 'https://onlineshop-opa-redux.firebaseio.com',
+    projectId: 'onlineshop-opa-redux',
+    storageBucket: 'onlineshop-opa-redux.appspot.com',
+    messagingSenderId: '334808180356'
   }
 };

@@ -1,0 +1,11 @@
+{
+  "short_name": "OOSR",
+  "name": "Olli's online shop w/ Redux",
+  "start_url": "/",
+
+  "theme_color": "#f48c5b",
+  "background_color": "#FFA500",
+
+  "display": "standalone",
+  "orientation": "portrait"
+}

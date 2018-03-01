@@ -3,11 +3,11 @@ import localeFi from '@angular/common/locales/fi';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ServiceWorkerModule } from '@angular/service-worker';
 import { AppRoutingModule } from '@app/app-routing.module';
 import { AppComponent } from '@app/app.component';
 import { CoreModule } from '@app/core';
 import { CoreEffects, ShoppingCartEffects } from '@app/core/effects';
-import { SharedModule } from '@app/shared';
 import { environment } from '@env/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
@@ -19,7 +19,7 @@ import coreReducer from './core/reducers/core.reducers';
 import { metaReducers } from './store';
 
 registerLocaleData(localeFi, 'fi');
-
+console.log(environment.production);
 @NgModule({
   declarations: [
     AppComponent
@@ -27,8 +27,8 @@ registerLocaleData(localeFi, 'fi');
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    environment.production ? ServiceWorkerModule.register('/ngsw-worker.js') : [],
     AngularFireModule.initializeApp(environment.fireBase),
-    SharedModule,
     CoreModule,
     AppRoutingModule,
     ToastrModule.forRoot(),
