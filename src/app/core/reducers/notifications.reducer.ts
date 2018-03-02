@@ -32,6 +32,13 @@ export const notificationsReducer = handleActions({
     };
     return toast;
   },
+  UPDATE_PRODUCT_SUCCESS: (state, action) => {
+    const toast: Notification = {
+      type: 'success',
+      message: 'Item saved!'
+    };
+    return toast;
+  },
   NOT_AUTHENTICATED: (state, action) => {
     const toast: Notification = {
       type: 'success',
@@ -51,6 +58,13 @@ export const notificationsReducer = handleActions({
     const toast: Notification = {
       type: 'succerroress',
       message: 'Login failed!'
+    };
+    return toast;
+  },
+  UPDATE_PRODUCT_FAILED: (state, action) => {
+    const toast: Notification = {
+      type: 'error',
+      message: 'Failed to save item!'
     };
     return toast;
   },

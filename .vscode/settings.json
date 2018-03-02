@@ -1,3 +1,37 @@
 {
-  "git.ignoreLimitWarning": true
+  "editor.formatOnSave": true,
+  "html.format.indentInnerHtml": true,
+  "autoimport.autoComplete": false,
+  "auto-close-tag.activationOnLanguage": [
+    "xml",
+    "php",
+    "blade",
+    "ejs",
+    "jinja",
+    "plaintext",
+    "markdown",
+    "vue",
+    "liquid",
+    "erb",
+    "lang-cfml",
+    "cfml"
+  ],
+  "explorer.confirmDelete": false,
+  "vsicons.projectDetection.autoReload": true,
+  "eslint.enable": true,
+  "eslint.autoFixOnSave": true,
+  "tslint.enable": true,
+  "tslint.autoFixOnSave": true,
+  "stylelint.enable": true,
+  "css.validate": false,
+  "scss.validate": false,
+  "beautify.ignore": [
+    "**/*.scss",
+    "**/*.jsbeautifyrc"
+  ],
+  "typescriptHero.imports.organizeOnSave": true,
+  "typescriptHero.imports.disableImportRemovalOnOrganize": false,
+  "files.associations": {
+    ".jsbeautifyrc": "jsonc"
+  }
 }

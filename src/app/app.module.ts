@@ -34,7 +34,7 @@ registerLocaleData(localeFi, 'fi');
     StoreModule.forRoot({ core: coreReducer }, { metaReducers }),
     StoreDevtoolsModule.instrument(),
     EffectsModule.forRoot([CoreEffects, ShoppingCartEffects]),
-    environment.production ? ServiceWorkerModule.register('/ngsw-worker.js') : []
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]
