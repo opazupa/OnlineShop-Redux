@@ -33,5 +33,6 @@
   "typescriptHero.imports.disableImportRemovalOnOrganize": false,
   "files.associations": {
     ".jsbeautifyrc": "jsonc"
-  }
+  },
+  "git.ignoreLimitWarning": true
 }
